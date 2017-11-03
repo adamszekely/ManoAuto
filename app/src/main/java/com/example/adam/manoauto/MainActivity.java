@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
 
         navigationView=(NavigationView) findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(this);
-
+        navigationView.setItemIconTintList(null);
         //Enable the drawer to open and close
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
 
