@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/allcars"
+            android:icon="@drawable/carsign"
+            android:title="@string/allcars"
+            />
+        <item
+            android:id="@+id/myauto"
+            android:icon="@drawable/usersign"
+            android:title="@string/profile" />
+        <item
+            android:id="@+id/service"
+            android:icon="@drawable/tools"
+            android:title="@string/service" />
+        <item
+            android:id="@+id/favourites"
+            android:icon="@drawable/starfavourites"
+            android:title="@string/favourites" />
+        <item
+            android:id="@+id/gasstations"
+            android:icon="@drawable/gasstation"
+            android:title="@string/gasstations" />
+        <item
+            android:id="@+id/feedback"
+            android:icon="@drawable/signbox"
+            android:title="@string/feedback" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/settings"
+            android:title="@string/settings" />
+
+
+    </group>
+</menu>

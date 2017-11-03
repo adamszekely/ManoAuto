@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ManoAuto</string>
+    <string name="user">User</string>
+    <string name="username">User Name</string>
+    <string name="allcars">All Cars</string>
+    <string name="profile">My Profile</string>
+    <string name="service">Service</string>
+    <string name="favourites">Favourites</string>
+    <string name="gasstations">Gas Stations</string>
+    <string name="feedback">Feedback</string>
+    <string name="settings">Settings</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
 </resources>
