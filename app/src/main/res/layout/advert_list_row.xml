@@ -47,10 +47,10 @@
 
     <ImageButton
         android:id="@+id/favouriteBtn"
-        android:layout_toRightOf="@+id/title"
+        android:layout_alignParentRight="true"
         android:layout_width="30dp"
         android:layout_height="30dp"
-
+        android:layout_marginRight="8dp"
         android:layout_marginTop="20dp"
         android:background="@null"
         android:src="@drawable/starfavourites"
