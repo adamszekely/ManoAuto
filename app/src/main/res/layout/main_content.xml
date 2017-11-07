@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/activity_main"></include>
+    <include layout="@layout/activity_main">
+
+    </include>
 
     <android.support.design.widget.NavigationView
+
         android:id="@+id/navView"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
@@ -17,6 +20,8 @@
         android:layout_height="match_parent"
         android:background="@drawable/backgroundloginsmall"
         app:headerLayout="@layout/header"
-        app:menu="@menu/nav_menu"></android.support.design.widget.NavigationView>
+        app:menu="@menu/nav_menu">
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

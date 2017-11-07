@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/headerBackgroundColor"
+    >
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_fb_shape"
+
+        android:src="@drawable/starfavourites"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_toRightOf="@+id/image"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/userColor"
+        android:textSize="15sp"
+        android:textStyle="bold"
+
+        android:text="Mercedes-Benz CLS350"
+        />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_toRightOf="@+id/image"
+        android:layout_below="@+id/title"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/userColor"
+
+        android:text="2,5L Coupe"
+        />
+
+    <ImageButton
+        android:id="@+id/favouriteBtn"
+        android:layout_toRightOf="@+id/title"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:src="@drawable/starfavourites"
+        android:scaleType="fitCenter"
+
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+
+        >
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:padding="5dip"
+            android:background="@drawable/super_row_information_price"
+
+
+            android:text="$22000"
+            />
+
+        <TextView
+            android:id="@+id/year"
+            android:layout_toRightOf="@id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="5dip"
+            android:background="@drawable/super_row_information_fields"
+
+
+            android:text="2002-06"
+            />
+
+        <TextView
+            android:id="@+id/gearBox"
+            android:layout_toRightOf="@id/year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="5dip"
+            android:background="@drawable/super_row_information_fields"
+            android:layout_weight="0"
+
+            android:text="Automatic"
+            />
+
+        <TextView
+            android:id="@+id/fuelType"
+            android:layout_toRightOf="@id/gearBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="5dip"
+            android:background="@drawable/super_row_information_fields"
+
+
+            android:text="Benzin"
+            />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_toRightOf="@id/fuelType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="5dip"
+            android:background="@drawable/super_row_information_fields"
+
+
+            android:text="Aarhus"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

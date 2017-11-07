@@ -1,19 +1,24 @@
 package com.example.adam.manoauto;
 
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
-import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
 import android.view.View;
-import android.support.design.widget.NavigationView;
+import android.widget.ListView;
+
+import com.example.adam.manoauto.Advert.AdvertActivity;
+import com.example.adam.manoauto.Advert.AdvertAdapter;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ShareActionProvider.OnShareTargetSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,9 +32,10 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         setContentView(R.layout.main_content);
         Toolbar toolbar= findViewById(R.id.toolBar);
         toolbar.setTitle(R.string.allcars);
+
+
+
         setSupportActionBar(toolbar);
-
-
 
         drawerLayout=(DrawerLayout) findViewById(R.id.drawerLayout2);
 
@@ -37,15 +43,11 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-
-
             }
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-
-
             }
         };
         drawerLayout.addDrawerListener(toggle);
@@ -59,6 +61,22 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         getSupportActionBar().setHomeButtonEnabled(true);
 
 
+        //ListView
+
+        final ArrayList<AdvertActivity> advertList = new ArrayList<AdvertActivity>();
+        advertList.add(new AdvertActivity(R.drawable.mercedes,"Mercedes-Benz CLS350","2.5L, Coupe",R.drawable.starfavourites,"$22000","2002-06","Automatic","Petrol","Aarhus"));
+        advertList.add(new AdvertActivity(R.drawable.mercedes,"Mercedes-Benz CLS350","2.5L, Coupe",R.drawable.starfavourites,"$22000","2002-06","Automatic","Petrol","Aarhus"));
+        advertList.add(new AdvertActivity(R.drawable.mercedes,"Mercedes-Benz CLS350","2.5L, Coupe",R.drawable.starfavourites,"$22000","2002-06","Automatic","Petrol","Aarhus"));
+        advertList.add(new AdvertActivity(R.drawable.mercedes,"Mercedes-Benz CLS350","2.5L, Coupe",R.drawable.starfavourites,"$22000","2002-06","Automatic","Petrol","Aarhus"));
+        advertList.add(new AdvertActivity(R.drawable.mercedes,"Mercedes-Benz CLS350","2.5L, Coupe",R.drawable.starfavourites,"$22000","2002-06","Automatic","Petrol","Aarhus"));
+        advertList.add(new AdvertActivity(R.drawable.mercedes,"Mercedes-Benz CLS350","2.5L, Coupe",R.drawable.starfavourites,"$22000","2002-06","Automatic","Petrol","Aarhus"));
+        advertList.add(new AdvertActivity(R.drawable.mercedes,"Mercedes-Benz CLS350","2.5L, Coupe",R.drawable.starfavourites,"$22000","2002-06","Automatic","Petrol","Aarhus"));
+        advertList.add(new AdvertActivity(R.drawable.mercedes,"Mercedes-Benz CLS350","2.5L, Coupe",R.drawable.starfavourites,"$22000","2002-06","Automatic","Petrol","Aarhus"));
+
+
+        AdvertAdapter advertAdapter = new AdvertAdapter(this,advertList);
+        ListView listView = (ListView)findViewById(R.id.listView);
+        listView.setAdapter(advertAdapter);
 
 
     }

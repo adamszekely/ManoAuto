@@ -7,4 +7,10 @@
     <color name="headerBackgroundColor">#ffffff</color>
     <color name="toolbarBackground">#0f9e0c</color>
     <color name="userColor">#000000</color>
+
+
+    // used for super_row_information
+    <color name= "colorGrey">#c3c3c3</color>
+    <color name= "colorGreen">#66c8bf</color>
+
 </resources>

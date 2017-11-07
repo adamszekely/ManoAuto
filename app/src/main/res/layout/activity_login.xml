@@ -26,7 +26,8 @@ android:orientation="vertical">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true">
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="30dp">
 
     <ImageView
         android:id="@+id/img_name"
@@ -104,19 +105,6 @@ android:orientation="vertical">
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/login"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/arrowsimple"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_alignRight="@+id/button_login"
-            android:layout_centerHorizontal="true"
-            android:elevation="2dp"
-            />
-
         <Button
             android:id="@+id/button_login"
             android:layout_width="match_parent"
@@ -130,6 +118,20 @@ android:orientation="vertical">
             android:textColor="@android:color/background_light"
             android:onClick="loginClick"/>
 
+        <ImageView
+            android:id="@+id/login"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrowsimple"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignRight="@+id/button_login"
+            android:layout_centerHorizontal="true"
+            android:elevation="2dp"
+
+            />
+
     </RelativeLayout>
 
 </LinearLayout>
@@ -139,7 +141,8 @@ android:orientation="vertical">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true">
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -161,7 +164,8 @@ android:orientation="vertical">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerVertical="true"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="20dp"
+    >
 
     <TextView
         android:id="@+id/tvText"
@@ -199,7 +203,8 @@ android:orientation="vertical">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true">
+    android:layout_alignParentStart="true"
+    android:layout_marginTop="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -218,9 +223,7 @@ android:orientation="vertical">
             android:onClick="registerClick"/>
 
     </RelativeLayout>
-
 </LinearLayout>
-
 </LinearLayout>
 
 
