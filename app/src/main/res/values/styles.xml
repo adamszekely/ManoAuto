@@ -1,8 +1,10 @@
 <resources>
-
-
     <style name="NoActionBarTheme" parent="Theme.AppCompat.NoActionBar">
-
+        <item name="android:actionMenuTextAppearance">@style/CustomActionBar</item>
     </style>
 
+    //style for menu
+    <style name="CustomActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textSize">2sp</item>
+    </style>
 </resources>

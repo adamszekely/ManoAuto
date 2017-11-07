@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_content);
         Toolbar toolbar= findViewById(R.id.toolBar);
-        toolbar.setTitle(R.string.allcars);
+        toolbar.setTitle("");
 
 
 
@@ -90,5 +91,24 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     @Override
     public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
         return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.search_navigation:
+
+            Intent intent=new Intent(this, SearchActivity.class);
+            startActivity(intent);
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }
