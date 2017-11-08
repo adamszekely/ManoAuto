@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/search_navigation"
-        android:title="Change search"
+        android:title="@string/editSearch"
 
         app:showAsAction="ifRoom">
     </item>
