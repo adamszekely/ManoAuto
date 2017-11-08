@@ -23,8 +23,8 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_content);
-        Toolbar toolbar= findViewById(R.id.toolBar);
+        setContentView(R.layout.main_content_activity_search);
+        Toolbar toolbar= findViewById(R.id.toolBarSearch);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 

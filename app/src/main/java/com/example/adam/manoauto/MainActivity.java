@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_content);
+        setContentView(R.layout.main_content_activity_main);
         Toolbar toolbar= findViewById(R.id.toolBar);
         toolbar.setTitle("");
 

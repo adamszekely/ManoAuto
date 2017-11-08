@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/superLightGray"
     tools:context="com.example.adam.manoauto.SearchActivity">
 
     <android.support.design.widget.AppBarLayout
