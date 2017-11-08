@@ -12,5 +12,5 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="editSearch">Edit Search</string>
-
+    <string name="reset">Reset</string>
 </resources>
