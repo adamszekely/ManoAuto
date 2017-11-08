@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.example.adam.manoauto.Advert.AdvertActivity;
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         AdvertAdapter advertAdapter = new AdvertAdapter(this,advertList);
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(advertAdapter);
+
 
 
     }
