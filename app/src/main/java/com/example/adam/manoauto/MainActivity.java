@@ -93,11 +93,12 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         return false;
     }
 
-    @Override
+   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu,menu);
         return true;
     }
+
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
@@ -111,4 +112,5 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
 
         }
     }
+
 }
