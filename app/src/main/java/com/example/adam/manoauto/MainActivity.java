@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         toolbar.setTitle("");
 
 
-
         setSupportActionBar(toolbar);
 
         drawerLayout=(DrawerLayout) findViewById(R.id.drawerLayout2);
@@ -111,6 +110,13 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+
+    public void searchClick(View v)
+    {
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
 }

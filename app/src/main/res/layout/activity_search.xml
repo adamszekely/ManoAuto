@@ -6,7 +6,85 @@
     android:layout_height="match_parent"
     tools:context="com.example.adam.manoauto.SearchActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolBarSearch"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="@color/toolbarBackground"
+            app:popupTheme="@style/ThemeOverlay.AppCompat"
+
+            >
+
+            <TextView
+                android:id="@+id/search_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/locationBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:text="Search"
+                android:textColor="@color/headerBackgroundColor"
+                android:textSize="18dp" />
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
 
+
+    <!-- -->
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_shape"
+        android:text="Search"
+        android:onClick="testClick"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/searchButton"
+        android:layout_marginRight="8dp"
+        android:elevation="2dp"
+        android:src="@drawable/arrowsimple"
+        app:layout_constraintBottom_toBottomOf="@+id/searchButton"
+        app:layout_constraintRight_toRightOf="@id/searchButton"
+        app:layout_constraintTop_toTopOf="@+id/searchButton" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/searchButton"
+        android:layout_marginRight="30dp"
+        android:elevation="2dp"
+        android:src="@drawable/ic_action_name"
+        android:tint="@color/headerBackgroundColor"
+        app:layout_constraintBottom_toBottomOf="@+id/searchButton"
+        app:layout_constraintRight_toRightOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/searchButton" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </android.support.constraint.ConstraintLayout>

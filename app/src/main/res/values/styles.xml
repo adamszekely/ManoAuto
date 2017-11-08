@@ -5,6 +5,6 @@
 
     //style for menu
     <style name="CustomActionBar" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:textSize">2sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>
