@@ -32,7 +32,7 @@
             android:layout_marginBottom="10dp"
             android:layout_alignBottom="@+id/logo"
             android:layout_alignStart="@+id/userText"
-            android:text="@string/username"
+            android:text=""
             android:textColor="@color/userColor"
             android:textStyle="bold" />
 

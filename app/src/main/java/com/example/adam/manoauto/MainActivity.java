@@ -1,6 +1,7 @@
 package com.example.adam.manoauto;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,16 +12,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.adam.manoauto.Advert.AdvertActivity;
 import com.example.adam.manoauto.Advert.AdvertAdapter;
 import com.example.adam.manoauto.Login.Login;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -30,15 +35,17 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
     private FirebaseAuth mAuth;
+    TextView userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_content_activity_main);
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user=   mAuth.getCurrentUser();
+
         Toolbar toolbar= findViewById(R.id.toolBar);
         toolbar.setTitle("");
-
 
         setSupportActionBar(toolbar);
 
@@ -65,7 +72,10 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        View header = navigationView.getHeaderView(0);
 
+        userName=(TextView) header.findViewById(R.id.usernameText) ;
+        userName.setText(user.getEmail());
         //ListView
 
         final ArrayList<AdvertActivity> advertList = new ArrayList<AdvertActivity>();
