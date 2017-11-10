@@ -31,7 +31,10 @@
             android:id="@+id/settings"
             android:icon="@drawable/settings"
             android:title="@string/settings" />
-
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/quit"
+            android:title="Logout" />
 
     </group>
 </menu>

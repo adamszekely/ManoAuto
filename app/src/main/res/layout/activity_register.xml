@@ -44,7 +44,7 @@ android:orientation="vertical">
         android:ems="10"
         android:textSize="20sp"
         android:inputType="textEmailAddress"
-        android:hint="E - mail"
+        android:hint="E-mail"
         android:backgroundTint="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,7 +79,7 @@ android:orientation="vertical">
         android:id="@+id/text_password"
         android:ems="10"
         android:textSize="20sp"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:hint="Password"
         android:backgroundTint="#ffffff"
         android:layout_width="match_parent"
@@ -90,6 +90,7 @@ android:orientation="vertical">
         android:layout_marginTop="10dp"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/background_light"
+
         />
 
 </LinearLayout>
@@ -115,7 +116,7 @@ android:orientation="vertical">
         android:id="@+id/text_password_repeat"
         android:ems="10"
         android:textSize="20sp"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:hint="Repeat password"
         android:backgroundTint="#ffffff"
         android:layout_width="match_parent"

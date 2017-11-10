@@ -40,11 +40,11 @@ android:orientation="vertical">
         />
 
     <EditText
-        android:id="@+id/text_name"
+        android:id="@+id/text_name_login"
         android:ems="10"
         android:textSize="20sp"
         android:inputType="textEmailAddress"
-        android:hint="Name"
+        android:hint="E-mail"
         android:backgroundTint="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,10 +76,10 @@ android:orientation="vertical">
         />
 
     <EditText
-        android:id="@+id/text_password"
+        android:id="@+id/text_password_login"
         android:ems="10"
         android:textSize="20sp"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:hint="Password"
         android:backgroundTint="#ffffff"
         android:layout_width="match_parent"

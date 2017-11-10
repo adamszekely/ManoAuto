@@ -19,6 +19,8 @@ import android.widget.ListView;
 
 import com.example.adam.manoauto.Advert.AdvertActivity;
 import com.example.adam.manoauto.Advert.AdvertAdapter;
+import com.example.adam.manoauto.Login.Login;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -27,11 +29,13 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_content_activity_main);
+        mAuth = FirebaseAuth.getInstance();
         Toolbar toolbar= findViewById(R.id.toolBar);
         toolbar.setTitle("");
 
@@ -85,6 +89,14 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                mAuth.signOut();
+                Intent signout = new Intent(this, Login.class);
+                signout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(signout);
+                break;
+        }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
