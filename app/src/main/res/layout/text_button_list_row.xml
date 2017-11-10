@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/button_view"
     android:background="@drawable/super_row_information_price"
-    android:layout_margin="2dp">
+   android:layout_margin="2dp">
 
     <TextView
         android:id="@+id/textViewOfBrand"
