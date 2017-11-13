@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         modelLayout = (FlowLayout) findViewById(R.id.modelLayout);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout2);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayoutSearch);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
             /** Called when a drawer has settled in a completely closed state. */
@@ -173,5 +173,10 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                listCar.remove(i);
            }
         }
+    }
+    public void chooseBrandClick(View v)
+    {
+        Intent intent=new Intent(this, BrandlistActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.adam.manoauto.ModellistActivity"
+    android:background="@color/superLightGray">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolBarBrand"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="@color/toolbarBackground"
+            app:popupTheme="@style/ThemeOverlay.AppCompat"
+
+            >
+
+            <TextView
+                android:id="@+id/model_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/locationBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:text="Model"
+                android:textColor="@color/headerBackgroundColor"
+                android:textSize="18dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+<ListView
+    android:id="@+id/modelListView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/appBar"></ListView>
+</android.support.constraint.ConstraintLayout>
