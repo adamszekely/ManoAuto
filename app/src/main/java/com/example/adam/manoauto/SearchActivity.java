@@ -1,6 +1,8 @@
 package com.example.adam.manoauto;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +43,7 @@ import com.nex3z.flowlayout.FlowLayout;
 
 import java.net.Authenticator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -52,12 +56,18 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     ArrayList<String> listCar;
     FirebaseAuth mAuth;
     TextView userName;
+    List<String> helperListOfCars;
+    SharedPreferences prefs;
+    TextView textView;
+    String temp;
+    FlowLayout flowLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_content_activity_search);
         Toolbar toolbar = findViewById(R.id.toolBarSearch);
+        flowLayout=(FlowLayout) findViewById(R.id.modelLayout);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         modelLayout = (FlowLayout) findViewById(R.id.modelLayout);
@@ -88,16 +98,6 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
 
 
         listCar=new ArrayList<String>();
-        listCar.add("BMW");
-        listCar.add("Mercedes");
-        listCar.add("Ferrari");
-        listCar.add("VW");
-        listCar.add("Ford");
-        listCar.add("Audi");
-        listCar.add("Lada");
-        listCar.add("Honda");
-        listCar.add("Trabant");
-        listCar.add("Renault");
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user=  mAuth.getCurrentUser();
@@ -111,6 +111,14 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     @Override
     protected void onResume() {
         super.onResume();
+        prefs = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
+        String serialized = prefs.getString("Car", "DefValue");
+        helperListOfCars = new ArrayList<String>(Arrays.asList(TextUtils.split(serialized, ",")));
+       for(int i=0;i<helperListOfCars.size();i++) {
+           String CurrentString = helperListOfCars.get(i);
+           listCar.add(CurrentString);
+       }
+
         for (int i = 0; i < listCar.size(); i++) {
             getLayoutInflater().inflate(R.layout.text_button_list_row, modelLayout);
             TextView brandTextView = modelLayout.getChildAt(i).findViewById(R.id.textViewOfBrand);
@@ -139,7 +147,13 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.reset:
-                // Reset all the fields
+                        flowLayout.removeAllViews();
+                        listCar.removeAll(listCar);
+                        SharedPreferences.Editor   editor = prefs.edit();
+                        editor.putString("Car", TextUtils.join(",", listCar));
+                        editor.commit();
+
+
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -155,9 +169,8 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     {
         ViewParent parent = v.getParent();
         LinearLayout linearLayout=null;
-        FlowLayout flowLayout=(FlowLayout) findViewById(R.id.modelLayout);
-        TextView textView;
-        String temp;
+
+
         if (parent instanceof LinearLayout) {
             // your button is inside a RelativeLayout
             linearLayout = (LinearLayout) parent;
@@ -171,6 +184,9 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
            {
                flowLayout.removeView(linearLayout);
                listCar.remove(i);
+               SharedPreferences.Editor   editor = prefs.edit();
+               editor.putString("Car", TextUtils.join(",", listCar));
+               editor.commit();
            }
         }
     }

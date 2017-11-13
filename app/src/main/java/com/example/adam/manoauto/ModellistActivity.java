@@ -1,5 +1,8 @@
 package com.example.adam.manoauto;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -8,9 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,6 +30,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ModellistActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -33,11 +40,14 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
+    SharedPreferences sharedPreferences;
+    List<String> helperListOfCars,listCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_content_activity_model_list);
+        listCar=new ArrayList<String>();
         modelListView=(ListView) findViewById(R.id.modelListView) ;
 
         if (savedInstanceState == null) {
@@ -45,10 +55,10 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
             if(extras == null) {
                 name= null;
             } else {
-                name= extras.getString("EXTRA_MESSAGE");
+                name= extras.getString("BRAND");
             }
         } else {
-            name= (String) savedInstanceState.getSerializable("EXTRA_MESSAGE");
+            name= (String) savedInstanceState.getSerializable("BRAND");
         }
 
         Toolbar toolbar = findViewById(R.id.toolBarBrand);
@@ -78,6 +88,36 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
        // Toast.makeText(this,name,Toast.LENGTH_LONG).show();
+
+        helperListOfCars=new ArrayList<String>();
+
+        modelListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
+            {
+                Intent intent = new Intent(ModellistActivity.this, SearchActivity.class);
+                String message = (String)arg0.getItemAtPosition(position);
+                //getting the list from shared preference to add to it
+                sharedPreferences = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
+
+                String serialized = sharedPreferences.getString("Car", "DefValue");
+                helperListOfCars = new ArrayList<String>(Arrays.asList(TextUtils.split(serialized, ",")));
+                for(int i=0;i<helperListOfCars.size();i++) {
+                    String CurrentString = helperListOfCars.get(i);
+                    // String[] separated = CurrentString.split("|");
+                    listCar.add(CurrentString);
+
+
+                }
+                listCar.add(name+" "+message);
+
+                SharedPreferences.Editor   editor = sharedPreferences.edit();
+                editor.putString("Car", TextUtils.join(",", listCar));
+                editor.commit();
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -117,6 +157,8 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
 
                     // Set the text color of TextView (ListView Item)
                     tv.setTextColor(Color.BLACK);
+                    tv.setPadding(50,35,50,35);
+                    tv.setTextSize(16);
 
                     // Generate ListView Item using TextView
                     return view;

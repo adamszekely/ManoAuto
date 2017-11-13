@@ -76,7 +76,7 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
             {
                 Intent intent = new Intent(BrandlistActivity.this, ModellistActivity.class);
                 String message = (String)arg0.getItemAtPosition(position);;
-                intent.putExtra("EXTRA_MESSAGE", message);
+                intent.putExtra("BRAND", message);
                 startActivity(intent);
             }
         });
@@ -114,6 +114,8 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
 
                     // Set the text color of TextView (ListView Item)
                     tv.setTextColor(Color.BLACK);
+                    tv.setPadding(50,35,50,35);
+                    tv.setTextSize(16);
 
                     // Generate ListView Item using TextView
                     return view;
