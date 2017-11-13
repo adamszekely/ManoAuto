@@ -36,7 +36,7 @@ public class Login extends AppCompatActivity {
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user=   mAuth.getCurrentUser();
+                FirebaseUser user=mAuth.getCurrentUser();
                 if(user==null)
                 {
                     return;
@@ -59,11 +59,19 @@ public class Login extends AppCompatActivity {
     public void loginClick(View v) {
         sEmail = email.getText().toString().trim();
         sPassword = password.getText().toString().trim();
-        if (!sEmail.isEmpty() && !sPassword.isEmpty()) {
+        if (!sEmail.isEmpty() && !sPassword.isEmpty() && sEmail.contains("@")) {
             login(sEmail, sPassword);
         }
+        else if(!sEmail.contains("@")){
+            Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_LONG).show();
+        }
         else {
-            Toast.makeText(this, "Email or password must not be empty", Toast.LENGTH_LONG).show();
+            if(sEmail.isEmpty()) {
+                Toast.makeText(this, "Please enter an email", Toast.LENGTH_LONG).show();
+            }
+            else if(sPassword.isEmpty()){
+                Toast.makeText(this, "Please enter a password", Toast.LENGTH_LONG).show();
+            }
         }
     }
     public void registerClick(View v)
@@ -86,8 +94,8 @@ public void login(String email, String password)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("TAG", "signInWithEmail:failure", task.getException());
-                        Toast.makeText(Login.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Please enter a valid email or password",
+                                Toast.LENGTH_LONG).show();
 
                     }
 

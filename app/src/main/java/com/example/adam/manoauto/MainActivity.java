@@ -36,13 +36,15 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     NavigationView navigationView;
     private FirebaseAuth mAuth;
     TextView userName;
+    View header;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_content_activity_main);
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user=   mAuth.getCurrentUser();
+        user=mAuth.getCurrentUser();
 
         Toolbar toolbar= findViewById(R.id.toolBar);
         toolbar.setTitle("");
@@ -72,10 +74,6 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        View header = navigationView.getHeaderView(0);
-
-        userName=(TextView) header.findViewById(R.id.usernameText) ;
-        userName.setText(user.getEmail());
         //ListView
 
         final ArrayList<AdvertActivity> advertList = new ArrayList<AdvertActivity>();
@@ -93,13 +91,22 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(advertAdapter);
 
-
-
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        header = navigationView.getHeaderView(0);
+        userName=(TextView) header.findViewById(R.id.usernameText) ;
+        //gets the current user and displays him inside the app as the current logged in user
+        userName.setText(user.getEmail());
+    }
+
+    //gives functionality to the items in the navigation drawer
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            //"Logout" button
             case R.id.logout:
                 mAuth.signOut();
                 Intent signout = new Intent(this, Login.class);
@@ -122,20 +129,18 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         return true;
     }
 
-
+    //gives functionality to the navigation bar buttons
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
+            //"Edit Search" button
             case R.id.search_navigation:
-
             Intent intent=new Intent(this, SearchActivity.class);
             startActivity(intent);
 
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
-
 
     public void searchClick(View v)
     {

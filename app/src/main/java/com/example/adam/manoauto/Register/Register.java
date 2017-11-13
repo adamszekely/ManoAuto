@@ -7,10 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.adam.manoauto.Login.Login;
 import com.example.adam.manoauto.MainActivity;
 import com.example.adam.manoauto.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +21,8 @@ public class Register extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText email, password, repeatPass;
-    String sEmail,sPassword,sRepeatPass;
+    String sEmail, sPassword, sRepeatPass;
+    private boolean signInResult = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,30 +32,34 @@ public class Register extends AppCompatActivity {
         password = (EditText) findViewById(R.id.text_password);
         repeatPass = (EditText) findViewById(R.id.text_password_repeat);
         mAuth = FirebaseAuth.getInstance();
+
     }
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-    }
+    }*/
 
     public void registerClick(View v) {
-        sEmail=email.getText().toString().trim();
-        sPassword=password.getText().toString().trim();
-        sRepeatPass=repeatPass.getText().toString().trim();
-        if (!sEmail.isEmpty() && !sPassword.isEmpty() && !sRepeatPass.isEmpty()) {
+        sEmail = email.getText().toString().trim();
+        sPassword = password.getText().toString().trim();
+        sRepeatPass = repeatPass.getText().toString().trim();
+        if (!sEmail.isEmpty() && !sPassword.isEmpty() && !sRepeatPass.isEmpty() && sEmail.contains("@")) {
             if (sPassword.equals(sRepeatPass)) {
                 createUser(email.getText().toString(), password.getText().toString());
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-            }
-            else {
+                if (signInResult == true) {
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                }
+            } else {
                 Toast.makeText(this, "Passwords need to be the same", Toast.LENGTH_LONG).show();
             }
-        } else {
+        } else if (sEmail.isEmpty() || sPassword.isEmpty() || sRepeatPass.isEmpty()) {
             Toast.makeText(this, "Email or password must not be empty", Toast.LENGTH_LONG).show();
+        } else if (!sEmail.contains("@")) {
+            Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -69,16 +72,15 @@ public class Register extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            signInResult = true;
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(Register.this, "Authentication failed.",
+                            Toast.makeText(Register.this, "Please enter a valid password!\nPassword needs to be minimum 6 characters long",
                                     Toast.LENGTH_SHORT).show();
-
+                            signInResult = false;
                         }
-
-                        // ...
                     }
                 });
     }
