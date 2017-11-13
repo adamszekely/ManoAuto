@@ -46,7 +46,7 @@ public class Register extends AppCompatActivity {
         sEmail = email.getText().toString().trim();
         sPassword = password.getText().toString().trim();
         sRepeatPass = repeatPass.getText().toString().trim();
-        if (!sEmail.isEmpty() && !sPassword.isEmpty() && !sRepeatPass.isEmpty() && sEmail.contains("@")) {
+        if (!sEmail.isEmpty() && !sPassword.isEmpty() && !sRepeatPass.isEmpty()) {
             if (sPassword.equals(sRepeatPass)) {
                 createUser(email.getText().toString(), password.getText().toString());
                 if (signInResult == true) {
@@ -58,8 +58,6 @@ public class Register extends AppCompatActivity {
             }
         } else if (sEmail.isEmpty() || sPassword.isEmpty() || sRepeatPass.isEmpty()) {
             Toast.makeText(this, "Email or password must not be empty", Toast.LENGTH_LONG).show();
-        } else if (!sEmail.contains("@")) {
-            Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -77,7 +75,8 @@ public class Register extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(Register.this, "Please enter a valid password!\nPassword needs to be minimum 6 characters long",
+                            Toast.makeText(Register.this, "Please enter a valid email or password!\n" +
+                                            "Password needs to be minimum 6 characters long",
                                     Toast.LENGTH_SHORT).show();
                             signInResult = false;
                         }

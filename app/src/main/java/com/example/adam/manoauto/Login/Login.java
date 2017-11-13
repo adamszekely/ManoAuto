@@ -59,11 +59,8 @@ public class Login extends AppCompatActivity {
     public void loginClick(View v) {
         sEmail = email.getText().toString().trim();
         sPassword = password.getText().toString().trim();
-        if (!sEmail.isEmpty() && !sPassword.isEmpty() && sEmail.contains("@")) {
+        if (!sEmail.isEmpty() && !sPassword.isEmpty()) {
             login(sEmail, sPassword);
-        }
-        else if(!sEmail.contains("@")){
-            Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_LONG).show();
         }
         else {
             if(sEmail.isEmpty()) {
