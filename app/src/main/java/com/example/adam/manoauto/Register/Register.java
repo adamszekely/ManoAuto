@@ -75,7 +75,7 @@ public class Register extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(Register.this, "Please enter a valid email or password!\n" +
+                            Toast.makeText(Register.this, "Please enter a valid email or or password!\n" +
                                             "Password needs to be minimum 6 characters long",
                                     Toast.LENGTH_SHORT).show();
                             signInResult = false;
