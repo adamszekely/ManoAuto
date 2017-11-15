@@ -118,27 +118,6 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
                     Toast.makeText(ModellistActivity.this, "This model is already selected", Toast.LENGTH_LONG).show();
                     listCar.removeAll(listCar);
                 }
-               /* if (listCar.isEmpty()) {
-                    added = true;
-                } else {
-                    for (String car : helperListOfCars) {
-
-                        if (!car.equals(name + " " + message)) {
-                            added = true;
-                        } else {
-                            added=false;
-                            Toast.makeText(ModellistActivity.this, "This model is already selected", Toast.LENGTH_LONG).show();
-
-                        }
-                    }
-                }
-                if (added == true) {
-                    listCar.add(name + " " + message);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("Car", TextUtils.join(",", listCar));
-                    editor.commit();
-                    startActivity(intent);
-                }*/
             }
         });
     }
