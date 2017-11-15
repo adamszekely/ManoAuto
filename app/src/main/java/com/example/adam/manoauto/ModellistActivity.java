@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ModellistActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ModellistActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView modelListView;
     String name;
@@ -41,24 +41,25 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
     SharedPreferences sharedPreferences;
-    List<String> helperListOfCars,listCar;
+    List<String> helperListOfCars, listCar;
+    boolean added = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_content_activity_model_list);
-        listCar=new ArrayList<String>();
-        modelListView=(ListView) findViewById(R.id.modelListView) ;
+        listCar = new ArrayList<String>();
+        modelListView = (ListView) findViewById(R.id.modelListView);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                name= null;
+            if (extras == null) {
+                name = null;
             } else {
-                name= extras.getString("BRAND");
+                name = extras.getString("BRAND");
             }
         } else {
-            name= (String) savedInstanceState.getSerializable("BRAND");
+            name = (String) savedInstanceState.getSerializable("BRAND");
         }
 
         Toolbar toolbar = findViewById(R.id.toolBarBrand);
@@ -87,38 +88,61 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
         //Enable the drawer to open and close
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
-       // Toast.makeText(this,name,Toast.LENGTH_LONG).show();
+        // Toast.makeText(this,name,Toast.LENGTH_LONG).show();
 
-        helperListOfCars=new ArrayList<String>();
+        helperListOfCars = new ArrayList<String>();
 
-        modelListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        modelListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
-            {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(ModellistActivity.this, SearchActivity.class);
-                String message = (String)arg0.getItemAtPosition(position);
+                String message = (String) arg0.getItemAtPosition(position);
                 //getting the list from shared preference to add to it
                 sharedPreferences = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
 
                 String serialized = sharedPreferences.getString("Car", "DefValue");
                 helperListOfCars = new ArrayList<String>(Arrays.asList(TextUtils.split(serialized, ",")));
-                for(int i=0;i<helperListOfCars.size();i++) {
+
+                for (int i = 0; i < helperListOfCars.size(); i++) {
                     String CurrentString = helperListOfCars.get(i);
-                    // String[] separated = CurrentString.split("|");
                     listCar.add(CurrentString);
-
-
                 }
-                listCar.add(name+" "+message);
 
-                SharedPreferences.Editor   editor = sharedPreferences.edit();
-                editor.putString("Car", TextUtils.join(",", listCar));
-                editor.commit();
-                startActivity(intent);
+                if (!helperListOfCars.contains(name + " " + message)) {
+                    listCar.add(name + " " + message);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("Car", TextUtils.join(",", listCar));
+                    editor.commit();
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ModellistActivity.this, "This model is already selected", Toast.LENGTH_LONG).show();
+                    listCar.removeAll(listCar);
+                }
+               /* if (listCar.isEmpty()) {
+                    added = true;
+                } else {
+                    for (String car : helperListOfCars) {
+
+                        if (!car.equals(name + " " + message)) {
+                            added = true;
+                        } else {
+                            added=false;
+                            Toast.makeText(ModellistActivity.this, "This model is already selected", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                }
+                if (added == true) {
+                    listCar.add(name + " " + message);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("Car", TextUtils.join(",", listCar));
+                    editor.commit();
+                    startActivity(intent);
+                }*/
             }
         });
     }
+
 
     @Override
     protected void onResume() {
@@ -139,16 +163,16 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject c = jsonArray.getJSONObject(i);
 
-                if(c.getString("name").equals(name)) {
+                if (c.getString("name").equals(name)) {
 
                     for (int k = 0; k < c.getJSONArray("model").length(); k++) {
                         modelList.add(c.getJSONArray("model").getString(k));
                     }
                 }
             }
-            ArrayAdapter<String> nameAdapter = new ArrayAdapter<String>(this, android.R.layout.test_list_item, modelList){
+            ArrayAdapter<String> nameAdapter = new ArrayAdapter<String>(this, android.R.layout.test_list_item, modelList) {
                 @Override
-                public View getView(int position, View convertView, ViewGroup parent){
+                public View getView(int position, View convertView, ViewGroup parent) {
                     // Get the Item from ListView
                     View view = super.getView(position, convertView, parent);
 
@@ -157,14 +181,13 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
 
                     // Set the text color of TextView (ListView Item)
                     tv.setTextColor(Color.BLACK);
-                    tv.setPadding(50,35,50,35);
+                    tv.setPadding(50, 35, 50, 35);
                     tv.setTextSize(16);
 
                     // Generate ListView Item using TextView
                     return view;
                 }
             };
-
 
 
             modelListView.setAdapter(nameAdapter);

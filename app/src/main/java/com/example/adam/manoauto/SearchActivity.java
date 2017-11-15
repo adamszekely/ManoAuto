@@ -59,7 +59,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     List<String> helperListOfCars;
     SharedPreferences prefs;
     TextView textView;
-    String temp;
+    String temp, requiredValue;
     FlowLayout flowLayout;
 
     @Override
@@ -67,9 +67,10 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_content_activity_search);
         Toolbar toolbar = findViewById(R.id.toolBarSearch);
-        flowLayout=(FlowLayout) findViewById(R.id.modelLayout);
+        flowLayout = (FlowLayout) findViewById(R.id.modelLayout);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        requiredValue="false";
         modelLayout = (FlowLayout) findViewById(R.id.modelLayout);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayoutSearch);
 
@@ -96,14 +97,13 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.button_view);
 
 
-
-        listCar=new ArrayList<String>();
+        listCar = new ArrayList<String>();
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user=  mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
         View header = navigationView.getHeaderView(0);
 
-        userName=(TextView) header.findViewById(R.id.usernameText) ;
+        userName = (TextView) header.findViewById(R.id.usernameText);
         userName.setText(user.getEmail());
 
     }
@@ -114,18 +114,36 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         prefs = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
         String serialized = prefs.getString("Car", "DefValue");
         helperListOfCars = new ArrayList<String>(Arrays.asList(TextUtils.split(serialized, ",")));
-       for(int i=0;i<helperListOfCars.size();i++) {
-           String CurrentString = helperListOfCars.get(i);
-           listCar.add(CurrentString);
-       }
+        for (int i = 0; i < helperListOfCars.size(); i++) {
+            String CurrentString = helperListOfCars.get(i);
+            listCar.add(CurrentString);
+        }
 
-        for (int i = 0; i < listCar.size(); i++) {
-            getLayoutInflater().inflate(R.layout.text_button_list_row, modelLayout);
-            TextView brandTextView = modelLayout.getChildAt(i).findViewById(R.id.textViewOfBrand);
-            brandTextView.setText(listCar.get(i));
-
+        if (requiredValue.equals("false")) {
+            for (int i = 0; i < listCar.size(); i++) {
+                getLayoutInflater().inflate(R.layout.text_button_list_row, modelLayout);
+                TextView brandTextView = modelLayout.getChildAt(i).findViewById(R.id.textViewOfBrand);
+                brandTextView.setText(listCar.get(i));
+            }
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == 1 && resultCode == RESULT_OK) {
+
+                requiredValue = data.getStringExtra("Key");
+            }
+        } catch (Exception ex) {
+            Toast.makeText(this, ex.toString(),
+                    Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -147,12 +165,11 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.reset:
-                        flowLayout.removeAllViews();
-                        listCar.removeAll(listCar);
-                        SharedPreferences.Editor   editor = prefs.edit();
-                        editor.putString("Car", TextUtils.join(",", listCar));
-                        editor.commit();
-
+                flowLayout.removeAllViews();
+                listCar.removeAll(listCar);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("Car", TextUtils.join(",", listCar));
+                editor.commit();
 
 
             default:
@@ -165,10 +182,9 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         Toast.makeText(this, "Blblabla", Toast.LENGTH_SHORT).show();
     }
 
-    public void deleteModel(View v)
-    {
+    public void deleteModel(View v) {
         ViewParent parent = v.getParent();
-        LinearLayout linearLayout=null;
+        LinearLayout linearLayout = null;
 
 
         if (parent instanceof LinearLayout) {
@@ -178,21 +194,20 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         }
 
         for (int i = 0; i < listCar.size(); i++) {
-           textView= linearLayout.getChildAt(0).findViewById(R.id.textViewOfBrand);
-           temp=textView.getText().toString().trim();
-           if(temp.equals(listCar.get(i)))
-           {
-               flowLayout.removeView(linearLayout);
-               listCar.remove(i);
-               SharedPreferences.Editor   editor = prefs.edit();
-               editor.putString("Car", TextUtils.join(",", listCar));
-               editor.commit();
-           }
+            textView = linearLayout.getChildAt(0).findViewById(R.id.textViewOfBrand);
+            temp = textView.getText().toString().trim();
+            if (temp.equals(listCar.get(i))) {
+                flowLayout.removeView(linearLayout);
+                listCar.remove(i);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("Car", TextUtils.join(",", listCar));
+                editor.commit();
+            }
         }
     }
-    public void chooseBrandClick(View v)
-    {
-        Intent intent=new Intent(this, BrandlistActivity.class);
-        startActivity(intent);
+
+    public void chooseBrandClick(View v) {
+        Intent intent = new Intent(this, BrandlistActivity.class);
+        startActivityForResult(intent, 1);
     }
 }

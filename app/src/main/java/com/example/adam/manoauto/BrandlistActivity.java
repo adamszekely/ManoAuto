@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,6 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
         Toolbar toolbar = findViewById(R.id.toolBarBrand);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-
         drawerLayout = (DrawerLayout) findViewById(R.id.MainContentBrandList);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
@@ -87,6 +87,17 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
     protected void onResume() {
         super.onResume();
         setJSONFileArrayToListView();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+
+            Intent intent = getIntent();
+            intent.putExtra("Key", "true");
+            setResult(RESULT_OK, intent);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     public void setJSONFileArrayToListView() {
