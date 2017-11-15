@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/superLightGray"
     android:fillViewport="true"
-    tools:context="com.example.adam.manoauto.SearchActivity">
+    tools:context="com.example.adam.manoauto.Search.SearchActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -95,7 +95,7 @@
             <Button
                 android:id="@+id/addBrand"
                 android:layout_width="0dp"
-                android:layout_height="20dp"
+                android:layout_height="25dp"
 
                 android:layout_marginEnd="8dp"
 
@@ -111,7 +111,7 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <!--Years layout -->
+        YearsActivityears layout -->
         <RelativeLayout
             android:id="@+id/yearList"
             android:layout_width="match_parent"
@@ -155,7 +155,8 @@
                 android:layout_alignTop="@+id/years"
                 android:layout_marginEnd="8dp"
                 android:background="#ffffff"
-                android:src="@drawable/arrow_right" />
+                android:src="@drawable/arrow_right"
+                android:onClick="chooseYearsClick"/>
 
             <View
                 android:layout_width="match_parent"
@@ -376,7 +377,7 @@
         <Button
             android:id="@+id/detailedSearch"
             android:layout_width="0dp"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"

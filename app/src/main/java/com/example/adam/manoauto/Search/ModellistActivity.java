@@ -1,4 +1,4 @@
-package com.example.adam.manoauto;
+package com.example.adam.manoauto.Search;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nex3z.flowlayout.FlowLayout;
+import com.example.adam.manoauto.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

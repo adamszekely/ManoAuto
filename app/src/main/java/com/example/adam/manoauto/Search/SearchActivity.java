@@ -1,4 +1,4 @@
-package com.example.adam.manoauto;
+package com.example.adam.manoauto.Search;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,34 +14,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewManager;
 import android.view.ViewParent;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.google.android.flexbox.AlignContent;
-import com.google.android.flexbox.AlignItems;
-import com.google.android.flexbox.AlignSelf;
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexWrap;
-import com.google.android.flexbox.FlexboxLayout;
-import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
+import com.example.adam.manoauto.R;
+import com.example.adam.manoauto.Search.BrandlistActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nex3z.flowlayout.FlowLayout;
 
-import java.net.Authenticator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -209,5 +196,10 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     public void chooseBrandClick(View v) {
         Intent intent = new Intent(this, BrandlistActivity.class);
         startActivityForResult(intent, 1);
+    }
+
+    public void chooseYearsClick(View v){
+        Intent intent = new Intent(this, YearsActivity.class);
+        startActivity(intent);
     }
 }
