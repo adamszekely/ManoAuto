@@ -350,17 +350,17 @@
 
 
             <EditText
-            android:id="@+id/setTxtDoorNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toEndOf="@id/imgNewDoorNo"
-            android:layout_weight="1"
-            android:hint="Door no"
-            android:textColorHint="@color/colorGrey"
-            android:textColor="@color/colorGreen"
-            android:textSize="15sp" />
+                android:id="@+id/setTxtDoorNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/imgNewDoorNo"
+                android:layout_weight="1"
+                android:hint="Door no"
+                android:textColor="@color/colorGreen"
+                android:textColorHint="@color/colorGrey"
+                android:textSize="15sp" />
 
 
             <ImageView
@@ -395,17 +395,17 @@
             <!--Button needed here-->
 
             <!--<EditText-->
-                <!--android:id="@+id/setTxtCarType"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:layout_toEndOf="@id/imgNewEngineSize2"-->
-                <!--android:layout_weight="1"-->
-                <!--android:hint="Car type"-->
-                <!--android:textColor="@color/colorGreen"-->
-                <!--android:textColorHint="@color/colorGrey"-->
-                <!--android:textSize="15sp" />-->
+            <!--android:id="@+id/setTxtCarType"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_toEndOf="@id/imgNewEngineSize2"-->
+            <!--android:layout_weight="1"-->
+            <!--android:hint="Car type"-->
+            <!--android:textColor="@color/colorGreen"-->
+            <!--android:textColorHint="@color/colorGrey"-->
+            <!--android:textSize="15sp" />-->
 
 
             <View
@@ -496,20 +496,20 @@
                 android:textSize="15sp" />
 
 
-        <ImageView
-            android:id="@+id/imgNewColor"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/starfavourites" />
+            <ImageView
+                android:id="@+id/imgNewColor"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/starfavourites" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#BDBDBD" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#BDBDBD" />
         </RelativeLayout>
         <!--SET CAR STATE (if it was broken or smthing?)-->
         <RelativeLayout
@@ -568,34 +568,34 @@
             app:layout_constraintTop_toBottomOf="@+id/newColorLayout">
 
 
-        <EditText
-            android:id="@+id/setTxtWheelPoistion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toEndOf="@id/imgNeWheelPosition"
-            android:layout_weight="1"
-            android:hint="SteeringW"
-            android:textColorHint="@color/colorGrey"
-            android:textColor="@color/colorGreen"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/setTxtWheelPoistion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/imgNeWheelPosition"
+                android:layout_weight="1"
+                android:hint="SteeringW"
+                android:textColor="@color/colorGreen"
+                android:textColorHint="@color/colorGrey"
+                android:textSize="15sp" />
 
 
-        <ImageView
-            android:id="@+id/imgNeWheelPosition"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/starfavourites" />
+            <ImageView
+                android:id="@+id/imgNeWheelPosition"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/starfavourites" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#BDBDBD" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#BDBDBD" />
         </RelativeLayout>
         <!--SET WHEEL DRIVE (4X4 ...)-->
         <RelativeLayout
@@ -652,34 +652,34 @@
             app:layout_constraintTop_toBottomOf="@+id/newSWheelPositionLayout">
 
 
-        <EditText
-            android:id="@+id/setTxtWheelSize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toEndOf="@id/imgNewWheelSize"
-            android:layout_weight="1"
-            android:hint="Left"
-            android:textColorHint="@color/colorGrey"
-            android:textColor="@color/colorGreen"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/setTxtWheelSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/imgNewWheelSize"
+                android:layout_weight="1"
+                android:hint="Left"
+                android:textColor="@color/colorGreen"
+                android:textColorHint="@color/colorGrey"
+                android:textSize="15sp" />
 
 
-        <ImageView
-            android:id="@+id/imgNewWheelSize"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/starfavourites" />
+            <ImageView
+                android:id="@+id/imgNewWheelSize"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/starfavourites" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#BDBDBD" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#BDBDBD" />
         </RelativeLayout>
         <!--SET CAR LOCATION (  Region)-->
         <RelativeLayout
@@ -736,34 +736,34 @@
             app:layout_constraintTop_toBottomOf="@+id/newWheelSizeLaout">
 
 
-        <EditText
-            android:id="@+id/setTxtSeatsNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toEndOf="@id/imgNewSeatsNo"
-            android:layout_weight="1"
-            android:hint="Seats NO "
-            android:textColorHint="@color/colorGrey"
-            android:textColor="@color/colorGreen"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/setTxtSeatsNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/imgNewSeatsNo"
+                android:layout_weight="1"
+                android:hint="Seats NO "
+                android:textColor="@color/colorGreen"
+                android:textColorHint="@color/colorGrey"
+                android:textSize="15sp" />
 
 
-        <ImageView
-            android:id="@+id/imgNewSeatsNo"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/starfavourites" />
+            <ImageView
+                android:id="@+id/imgNewSeatsNo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/starfavourites" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="#BDBDBD" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="#BDBDBD" />
         </RelativeLayout>
         <!-- SET EES (EUROPEAN EMISSION STANDARD EURO5)e-->
         <RelativeLayout
@@ -850,7 +850,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:background="#BDBDBD" />
-        </RelativeLayout>>
+        </RelativeLayout>
+        >
         <!--SET ID-->
         <RelativeLayout
             android:id="@+id/newIDLayout"
