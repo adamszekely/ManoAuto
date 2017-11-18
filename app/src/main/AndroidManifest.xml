@@ -29,8 +29,11 @@
         <activity android:name=".Search.ModellistActivity" />
         <activity android:name=".Search.YearsActivity" />
         <activity android:name=".Search.PriceActivity" />
-        <activity android:name=".CreateAnnouncement.AddCarActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".CreateAnnouncement.AddCarActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Search.FuelTypeActivity" />
+        <activity android:name=".Search.CarTypeActivity"></activity>
     </application>
 
 </manifest>

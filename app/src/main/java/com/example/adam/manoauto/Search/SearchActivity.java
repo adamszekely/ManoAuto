@@ -49,7 +49,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     String temp, requiredValue;
     FlowLayout flowLayout;
     boolean stopped = false;
-    LinearLayout linearLayoutYear, linearLayoutPrice;
+    LinearLayout linearLayoutYear, linearLayoutPrice,linearLayoutFuel,linearLayoutCarType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,8 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         flowLayout = (FlowLayout) findViewById(R.id.modelLayout);
         linearLayoutYear = (LinearLayout) findViewById(R.id.yearLayout);
         linearLayoutPrice = (LinearLayout) findViewById(R.id.priceLayout);
+        linearLayoutFuel=(LinearLayout) findViewById(R.id.fuelLayout);
+        linearLayoutCarType=(LinearLayout) findViewById(R.id.carTypeLayout);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         requiredValue = "false";
@@ -125,6 +127,16 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 TextView priceTextView = linearLayoutPrice.findViewById(R.id.textViewOfBrand);
                 priceTextView.setText(prefs.getInt("PRICEMIN", -1) + "€ - " + prefs.getInt("PRICEMAX", -1) + "€");
             }
+            if (prefs.getString("FUELTYPE", "") != "") {
+                getLayoutInflater().inflate(R.layout.text_button_list_row, linearLayoutFuel);
+                TextView fuelTextView = linearLayoutFuel.findViewById(R.id.textViewOfBrand);
+                fuelTextView.setText(prefs.getString("FUELTYPE", ""));
+            }
+            if (prefs.getString("CARTYPE", "") != "") {
+                getLayoutInflater().inflate(R.layout.text_button_list_row, linearLayoutCarType);
+                TextView fuelTextView = linearLayoutCarType.findViewById(R.id.textViewOfBrand);
+                fuelTextView.setText(prefs.getString("CARTYPE", ""));
+            }
         }
     }
 
@@ -183,6 +195,12 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 linearLayoutPrice.removeAllViews();
                 editor.putInt("PRICEMIN", -1);
                 editor.putInt("PRICEMAX", -1);
+
+                linearLayoutFuel.removeAllViews();
+                editor.putString("FUELTYPE", "");
+
+                linearLayoutCarType.removeAllViews();
+                editor.putString("CARTYPE", "");
                 editor.commit();
 
 
@@ -221,6 +239,12 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         linearLayoutPrice.removeView(linearLayout);
         editor.putInt("PRICEMIN", -1);
         editor.putInt("PRICEMAX", -1);
+
+        linearLayoutFuel.removeView(linearLayout);
+        editor.putString("FUELTYPE", "");
+
+        linearLayoutCarType.removeView(linearLayout);
+        editor.putString("CARTYPE", "");
         editor.commit();
     }
 
@@ -241,6 +265,18 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
 
     public void searchCarClick(View v) {
         Intent intent = new Intent(this, AddCarActivity.class);
+        startActivity(intent);
+    }
+
+    public void chooseFuelType(View v)
+    {
+        Intent intent = new Intent(this, FuelTypeActivity.class);
+        startActivity(intent);
+    }
+
+    public void chooseCarType(View v)
+    {
+        Intent intent = new Intent(this, CarTypeActivity.class);
         startActivity(intent);
     }
 }

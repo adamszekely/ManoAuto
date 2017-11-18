@@ -267,7 +267,8 @@
                 android:layout_alignTop="@+id/fuel"
                 android:layout_marginEnd="8dp"
                 android:background="#ffffff"
-                android:src="@drawable/arrow_right" />
+                android:src="@drawable/arrow_right"
+                android:onClick="chooseFuelType"/>
 
             <View
                 android:layout_width="match_parent"
@@ -322,7 +323,8 @@
                 android:layout_alignTop="@+id/car"
                 android:layout_marginEnd="8dp"
                 android:background="#ffffff"
-                android:src="@drawable/arrow_right" />
+                android:src="@drawable/arrow_right"
+                android:onClick="chooseCarType"/>
 
             <View
                 android:layout_width="match_parent"

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.adam.manoauto.Search.FuelTypeActivity"
+    android:background="@color/superLightGray"
+    android:padding="12dp">
+<RadioGroup
+    android:id="@+id/radioGroup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <RadioButton
+        android:id="@+id/radioButtonBenzin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Benzin"
+        android:textColor="@color/userColor"
+        android:buttonTint="@color/userColor"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="parent"/>
+
+    <RadioButton
+        android:id="@+id/radioButtonDiesel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Diesel"
+        android:textColor="@color/userColor"
+        android:buttonTint="@color/userColor"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/radioButtonBenzin"/>
+
+    <RadioButton
+        android:id="@+id/radioButtonLPG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LPG"
+        android:textColor="@color/userColor"
+        android:buttonTint="@color/userColor"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/radioButtonDiesel"/>
+
+    <RadioButton
+        android:id="@+id/radioButtonElectric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Electric"
+        android:textColor="@color/userColor"
+        android:buttonTint="@color/userColor"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/radioButtonLPG"/>
+
+    <RadioButton
+        android:id="@+id/radioButtonHybrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hybrid"
+        android:textColor="@color/userColor"
+        android:buttonTint="@color/userColor"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/radioButtonElectric"/>
+</RadioGroup>
+    <Button
+        android:id="@+id/buttonFuelType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"
+        android:onClick="fuelTypeClick"/>
+</android.support.constraint.ConstraintLayout>
