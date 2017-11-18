@@ -13,7 +13,7 @@
             android:title="@string/profile" />
         <item
             android:id="@+id/service"
-            android:icon="@drawable/tools"
+            android:icon="@drawable/tools_nav"
             android:title="@string/service" />
         <item
             android:id="@+id/favourites"
@@ -21,7 +21,7 @@
             android:title="@string/favourites" />
         <item
             android:id="@+id/gasstations"
-            android:icon="@drawable/gasstation"
+            android:icon="@drawable/gasstation_nav"
             android:title="@string/gasstations" />
         <item
             android:id="@+id/feedback"

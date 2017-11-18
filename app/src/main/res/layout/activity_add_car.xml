@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/headerBackgroundColor"
     android:orientation="vertical">
 
     <android.support.constraint.ConstraintLayout
@@ -39,15 +40,24 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
+        <TextView
+            android:id="@+id/chosenCarNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textSize="24sp"
+            android:textColor="@color/userColor"
+            app:layout_constraintTop_toBottomOf="@id/appBar" />
 
         <ImageButton
             android:id="@+id/addXXLimgButton"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_weight="1"
+            android:padding="24dp"
             android:scaleType="fitCenter"
-            app:layout_constraintTop_toBottomOf="@id/appBar"
-            app:srcCompat="@drawable/mercedes" />
+            app:layout_constraintTop_toBottomOf="@id/chosenCarNameText"
+            app:srcCompat="@drawable/add_image" />
 
         <HorizontalScrollView
             android:id="@+id/imageScrollView"
@@ -65,7 +75,7 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/arrowsimple" />
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg2"
@@ -73,7 +83,7 @@
                     android:layout_height="90dp"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg1"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/arrowsimple" />
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg3"
@@ -81,7 +91,7 @@
                     android:layout_height="90dp"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg2"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/arrowsimple" />
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg4"
@@ -89,7 +99,7 @@
                     android:layout_height="90dp"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg3"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/arrowsimple" />
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg5"
@@ -97,7 +107,7 @@
                     android:layout_height="90dp"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg4"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/arrowsimple" />
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg6"
@@ -105,13 +115,26 @@
                     android:layout_height="90dp"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg5"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/arrowsimple" />
+                    app:srcCompat="@drawable/add_image" />
 
             </LinearLayout>
         </HorizontalScrollView>
 
         <!--New vehicle details -->
-
+        <Button
+            android:id="@+id/carChooseButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_shape"
+            android:onClick="chooseCarAddClick"
+            android:padding="12dp"
+            android:text="Choose car"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageScrollView" />
 
         <!--Set year for new vehicle-->
 
@@ -119,6 +142,7 @@
             android:id="@+id/viewTxtNewPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_weight="0"
             android:background="@color/superLightGray"
             android:padding="8dp"
@@ -126,12 +150,13 @@
             android:textColor="@color/userColor"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageScrollView" />
+            app:layout_constraintTop_toBottomOf="@id/carChooseButton" />
 
         <EditText
             android:id="@+id/setTxtNewPrice"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:background="@color/superLightGray"
             android:hint="€1000"
@@ -142,7 +167,7 @@
             android:textColorHint="@color/colorGrey"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/imageScrollView" />
+            app:layout_constraintTop_toBottomOf="@id/carChooseButton" />
 
         <!--<include-->
         <!--android:id="@+id/details"-->
@@ -202,7 +227,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/calendar" />
 
         </RelativeLayout>
 
@@ -240,7 +265,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/road" />
 
             <View
                 android:layout_width="match_parent"
@@ -287,7 +312,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/engine" />
 
         </RelativeLayout>
 
@@ -326,7 +351,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/gasstation" />
 
             <View
                 android:layout_width="match_parent"
@@ -369,7 +394,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/door" />
 
             <View
                 android:layout_width="match_parent"
@@ -421,7 +446,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/car" />
 
         </RelativeLayout>
 
@@ -464,7 +489,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/gear" />
 
         </RelativeLayout>
 
@@ -502,7 +527,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/paint" />
 
             <View
                 android:layout_width="match_parent"
@@ -550,7 +575,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/tools" />
 
         </RelativeLayout>
 
@@ -588,7 +613,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/stearing" />
 
             <View
                 android:layout_width="match_parent"
@@ -636,7 +661,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/carbottom" />
 
         </RelativeLayout>
         <!--SET WHEEL SIZE-->
@@ -672,7 +697,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/wheel" />
 
             <View
                 android:layout_width="match_parent"
@@ -720,7 +745,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/earth" />
 
         </RelativeLayout>
         <!--SET SEATS NUMBER-->
@@ -756,7 +781,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/seat" />
 
             <View
                 android:layout_width="match_parent"
@@ -804,7 +829,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/star" />
 
         </RelativeLayout>
         <!--SET AIR CONDITIONING -->
@@ -842,7 +867,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/snowflake" />
 
             <View
                 android:layout_width="match_parent"
@@ -891,10 +916,47 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                app:srcCompat="@drawable/starfavourites" />
+                app:srcCompat="@drawable/id_icon" />
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/emptyLayout"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/headerBackgroundColor"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/newESSLayout">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#BDBDBD" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#BDBDBD"
+            app:layout_constraintTop_toBottomOf="@id/newIDLayout" />
+
+        <Button
+            android:id="@+id/saveAdvertButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/button_shape"
+            android:padding="12dp"
+            android:text="Save"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emptyLayout" />
 
     </android.support.constraint.ConstraintLayout>
 

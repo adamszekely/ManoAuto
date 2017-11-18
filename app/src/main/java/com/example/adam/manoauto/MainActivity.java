@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.adam.manoauto.Advert.AdvertActivity;
 import com.example.adam.manoauto.Advert.AdvertAdapter;
+import com.example.adam.manoauto.CreateAnnouncement.AddCarActivity;
 import com.example.adam.manoauto.Login.Login;
 import com.example.adam.manoauto.Search.SearchActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -103,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.myauto:
+                Intent intent = new Intent(this, AddCarActivity.class);
+                startActivity(intent);
+                break;
+
             //"Logout" button
             case R.id.logout:
                 mAuth.signOut();

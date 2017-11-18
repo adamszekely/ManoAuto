@@ -34,7 +34,7 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
-
+    String fromActivity;
 
 
     @Override
@@ -46,6 +46,17 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.MainContentBrandList);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                fromActivity = null;
+            } else {
+                fromActivity = extras.getString("FROMACTIVITY");
+            }
+        } else {
+            fromActivity = (String) savedInstanceState.getSerializable("FROMACTIVITY");
+        }
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
             /** Called when a drawer has settled in a completely closed state. */
@@ -76,6 +87,7 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
                 Intent intent = new Intent(BrandlistActivity.this, ModellistActivity.class);
                 String message = (String)arg0.getItemAtPosition(position);;
                 intent.putExtra("BRAND", message);
+                intent.putExtra("FROMACTIVITY", fromActivity);
                 startActivity(intent);
             }
         });

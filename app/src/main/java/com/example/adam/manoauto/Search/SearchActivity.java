@@ -250,6 +250,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
 
     public void chooseBrandClick(View v) {
         Intent intent = new Intent(this, BrandlistActivity.class);
+        intent.putExtra("FROMACTIVITY", "Search");
         startActivityForResult(intent, 1);
     }
 
@@ -264,8 +265,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     }
 
     public void searchCarClick(View v) {
-        Intent intent = new Intent(this, AddCarActivity.class);
-        startActivity(intent);
+       Toast.makeText(this,"BlaBla",Toast.LENGTH_LONG).show();
     }
 
     public void chooseFuelType(View v)

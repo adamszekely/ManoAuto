@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adam.manoauto.CreateAnnouncement.AddCarActivity;
 import com.example.adam.manoauto.R;
 
 import org.json.JSONArray;
@@ -36,7 +37,7 @@ import java.util.List;
 public class ModellistActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView modelListView;
-    String name;
+    String name, fromActivity;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
@@ -55,11 +56,14 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 name = null;
+                fromActivity = null;
             } else {
                 name = extras.getString("BRAND");
+                fromActivity = extras.getString("FROMACTIVITY");
             }
         } else {
             name = (String) savedInstanceState.getSerializable("BRAND");
+            fromActivity = (String) savedInstanceState.getSerializable("FROMACTIVITY");
         }
 
         Toolbar toolbar = findViewById(R.id.toolBarBrand);
@@ -95,28 +99,38 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
         modelListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Intent intent = new Intent(ModellistActivity.this, SearchActivity.class);
                 String message = (String) arg0.getItemAtPosition(position);
-                //getting the list from shared preference to add to it
-                sharedPreferences = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
+                if (fromActivity.equals("Search")) {
+                    Intent intent = new Intent(ModellistActivity.this, SearchActivity.class);
+                    //getting the list from shared preference to add to it
+                    sharedPreferences = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
 
-                String serialized = sharedPreferences.getString("Car", "DefValue");
-                helperListOfCars = new ArrayList<String>(Arrays.asList(TextUtils.split(serialized, ",")));
+                    String serialized = sharedPreferences.getString("Car", "DefValue");
+                    helperListOfCars = new ArrayList<String>(Arrays.asList(TextUtils.split(serialized, ",")));
 
-                for (int i = 0; i < helperListOfCars.size(); i++) {
-                    String CurrentString = helperListOfCars.get(i);
-                    listCar.add(CurrentString);
-                }
+                    for (int i = 0; i < helperListOfCars.size(); i++) {
+                        String CurrentString = helperListOfCars.get(i);
+                        listCar.add(CurrentString);
+                    }
 
-                if (!helperListOfCars.contains(name + " " + message)) {
-                    listCar.add(name + " " + message);
+                    if (!helperListOfCars.contains(name + " " + message)) {
+                        listCar.add(name + " " + message);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("Car", TextUtils.join(",", listCar));
+                        editor.commit();
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ModellistActivity.this, "This model is already selected", Toast.LENGTH_LONG).show();
+                        listCar.removeAll(listCar);
+                    }
+                } else if (fromActivity.equals("Advert")) {
+                    Intent intent = new Intent(ModellistActivity.this, AddCarActivity.class);
+                    //getting the list from shared preference to add to it
+                    sharedPreferences = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("Car", TextUtils.join(",", listCar));
+                    editor.putString("CarAdvert", name + " " + message);
                     editor.commit();
                     startActivity(intent);
-                } else {
-                    Toast.makeText(ModellistActivity.this, "This model is already selected", Toast.LENGTH_LONG).show();
-                    listCar.removeAll(listCar);
                 }
             }
         });
