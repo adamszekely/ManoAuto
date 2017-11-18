@@ -50,7 +50,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     String temp, requiredValue;
     FlowLayout flowLayout;
     boolean stopped = false;
-    LinearLayout linearLayoutYear;
+    LinearLayout linearLayoutYear, linearLayoutPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         Toolbar toolbar = findViewById(R.id.toolBarSearch);
         flowLayout = (FlowLayout) findViewById(R.id.modelLayout);
         linearLayoutYear = (LinearLayout) findViewById(R.id.yearLayout);
+        linearLayoutPrice = (LinearLayout) findViewById(R.id.priceLayout);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         requiredValue = "false";
@@ -115,10 +116,15 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 TextView brandTextView = modelLayout.getChildAt(i).findViewById(R.id.textViewOfBrand);
                 brandTextView.setText(listCar.get(i));
             }
-            if (prefs.getInt("YEARFROM", 0) != 0 && prefs.getInt("YEARTO", 0) != 0) {
+            if (prefs.getInt("YEARFROM", -1) != -1 && prefs.getInt("YEARTO", -1) != -1) {
                 getLayoutInflater().inflate(R.layout.text_button_list_row, linearLayoutYear);
                 TextView yearTextView = linearLayoutYear.findViewById(R.id.textViewOfBrand);
-                yearTextView.setText(prefs.getInt("YEARFROM", 0) + " - " + prefs.getInt("YEARTO", 0));
+                yearTextView.setText(prefs.getInt("YEARFROM", -1) + " - " + prefs.getInt("YEARTO", -1));
+            }
+            if (prefs.getInt("PRICEMIN", -1) != -1 && prefs.getInt("PRICEMAX", -1) != 1) {
+                getLayoutInflater().inflate(R.layout.text_button_list_row, linearLayoutPrice);
+                TextView priceTextView = linearLayoutPrice.findViewById(R.id.textViewOfBrand);
+                priceTextView.setText(prefs.getInt("PRICEMIN", -1) + "€ - " + prefs.getInt("PRICEMAX", -1) + "€");
             }
         }
     }
@@ -172,8 +178,12 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 editor.putString("Car", TextUtils.join(",", listCar));
 
                 linearLayoutYear.removeAllViews();
-                editor.putInt("YEARFROM", 0);
-                editor.putInt("YEARTO", 0);
+                editor.putInt("YEARFROM", -1);
+                editor.putInt("YEARTO", -1);
+
+                linearLayoutPrice.removeAllViews();
+                editor.putInt("PRICEMIN", -1);
+                editor.putInt("PRICEMAX", -1);
                 editor.commit();
 
 
@@ -210,8 +220,12 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         }
         textView = linearLayout.findViewById(R.id.textViewOfBrand);
         linearLayoutYear.removeView(linearLayout);
-        editor.putInt("YEARFROM", 0);
-        editor.putInt("YEARTO", 0);
+        editor.putInt("YEARFROM", -1);
+        editor.putInt("YEARTO", -1);
+
+        linearLayoutPrice.removeView(linearLayout);
+        editor.putInt("PRICEMIN", -1);
+        editor.putInt("PRICEMAX", -1);
         editor.commit();
     }
 
@@ -222,6 +236,11 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
 
     public void chooseYearsClick(View v) {
         Intent intent = new Intent(this, YearsActivity.class);
+        startActivity(intent);
+    }
+
+    public void choosePriceClick(View v) {
+        Intent intent = new Intent(this, PriceActivity.class);
         startActivity(intent);
     }
 }

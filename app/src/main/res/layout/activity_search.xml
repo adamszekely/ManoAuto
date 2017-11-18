@@ -109,7 +109,7 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        YearsActivityears layout -->
+        <!--YearsActivityears layout -->
 
         <RelativeLayout
             android:id="@+id/yearList"
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/years"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_toEndOf="@+id/years"
                 android:orientation="horizontal"></LinearLayout>
 
@@ -189,20 +189,20 @@
                 android:layout_centerInParent="true"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Price,€:"
+                android:text="Price:"
 
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
-            <include
-                android:id="@+id/priceSpinner"
-                layout="@layout/text_button_list_row"
+            <LinearLayout
+                android:id="@+id/priceLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/price"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/price" />
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/price"
+                android:orientation="horizontal"></LinearLayout>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -211,7 +211,8 @@
                 android:layout_alignTop="@+id/price"
                 android:layout_marginEnd="8dp"
                 android:background="#ffffff"
-                android:src="@drawable/arrow_right" />
+                android:src="@drawable/arrow_right"
+                android:onClick="choosePriceClick"/>
 
             <View
                 android:layout_width="match_parent"
@@ -249,15 +250,15 @@
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
-            <include
-                android:id="@+id/fuelSpinner"
-                layout="@layout/text_button_list_row"
+            <LinearLayout
+                android:id="@+id/fuelLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/fuel"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/fuel" />
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/fuel"
+                android:orientation="horizontal"></LinearLayout>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -304,15 +305,15 @@
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
-            <include
-                android:id="@+id/carSpinner"
-                layout="@layout/text_button_list_row"
+            <LinearLayout
+                android:id="@+id/carTypeLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/car"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/car" />
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/car"
+                android:orientation="horizontal"></LinearLayout>
 
             <ImageButton
                 android:layout_width="wrap_content"
