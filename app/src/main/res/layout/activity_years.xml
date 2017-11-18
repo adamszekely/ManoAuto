@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/superLightGray"
+    tools:context="com.example.adam.manoauto.Search.YearsActivity">
+
+    <EditText
+        android:id="@+id/yearFrom"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="From"
+        android:maxLength="4"
+        android:inputType="number"
+        android:textColor="@color/userColor"
+        android:textColorHint="@color/colorGrey"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <EditText
+        android:id="@+id/yearTo"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:maxLength="4"
+        android:hint="To"
+        android:textColor="@color/userColor"
+        android:textColorHint="@color/colorGrey"
+        android:inputType="number"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yearFrom" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="yearsClick"
+        android:text="OK"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yearTo" />
+
+
+</android.support.constraint.ConstraintLayout>

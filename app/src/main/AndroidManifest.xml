@@ -24,9 +24,10 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".Register.Register" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".BrandlistActivity" />
-        <activity android:name=".ModellistActivity"></activity>
+        <activity android:name=".Search.SearchActivity" />
+        <activity android:name=".Search.BrandlistActivity" />
+        <activity android:name=".Search.ModellistActivity" />
+        <activity android:name=".Search.YearsActivity"></activity>
     </application>
 
 </manifest>
