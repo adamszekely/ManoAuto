@@ -341,7 +341,7 @@
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:background="@drawable/button_shape"
-            android:onClick="testClick"
+            android:onClick="searchCarClick"
             android:text="Search"
             app:layout_constraintBottom_toBottomOf="parent"
 

@@ -28,7 +28,9 @@
         <activity android:name=".Search.BrandlistActivity" />
         <activity android:name=".Search.ModellistActivity" />
         <activity android:name=".Search.YearsActivity" />
-        <activity android:name=".Search.PriceActivity"></activity>
+        <activity android:name=".Search.PriceActivity" />
+        <activity android:name=".CreateAnnouncement.AddCarActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

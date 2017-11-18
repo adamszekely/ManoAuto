@@ -19,13 +19,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.adam.manoauto.CreateAnnouncement.AddCarActivity;
 import com.example.adam.manoauto.R;
-import com.example.adam.manoauto.Search.BrandlistActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nex3z.flowlayout.FlowLayout;
@@ -193,10 +192,6 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         }
     }
 
-    public void testClick(View v) {
-        Toast.makeText(this, "Blblabla", Toast.LENGTH_SHORT).show();
-    }
-
     public void deleteModel(View v) {
         ViewParent parent = v.getParent();
         LinearLayout linearLayout = null;
@@ -241,6 +236,11 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
 
     public void choosePriceClick(View v) {
         Intent intent = new Intent(this, PriceActivity.class);
+        startActivity(intent);
+    }
+
+    public void searchCarClick(View v) {
+        Intent intent = new Intent(this, AddCarActivity.class);
         startActivity(intent);
     }
 }
