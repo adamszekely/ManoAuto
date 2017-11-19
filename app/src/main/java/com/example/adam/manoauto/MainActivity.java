@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
                     BitmapFactory.Options options=new BitmapFactory.Options();// Create object of bitmapfactory's option method for further option use
                     options.inPurgeable = true; // inPurgeable is used to free up memory while required
                     Bitmap carImage1 = BitmapFactory.decodeByteArray(decodedString,0, decodedString.length,options);//Decode image, "thumbnail" is the object of image file
-                    Bitmap carImage = Bitmap.createScaledBitmap(carImage1, 50 , 50 , true);// convert decoded bitmap into well scalled Bitmap format.
+                    Bitmap carImage = Bitmap.createScaledBitmap(carImage1, 25 , 25 , true);// convert decoded bitmap into well scalled Bitmap format.
                     Drawable drawable = new BitmapDrawable(getResources(), carImage);
                    /* byte[] decodedString = Base64.decode(advertArrayList.get(i).imageURL1, Base64.DEFAULT);
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);

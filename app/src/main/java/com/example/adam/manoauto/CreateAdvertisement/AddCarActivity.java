@@ -347,7 +347,7 @@ public class AddCarActivity extends AppCompatActivity {
     public void encodeBitmapAndSaveToFirebase(Bitmap bitmap,String name) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 20, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
 
         String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
         ref.child(name).setValue(imageEncoded);
