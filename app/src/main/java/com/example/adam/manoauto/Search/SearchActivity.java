@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.adam.manoauto.CreateAnnouncement.AddCarActivity;
 import com.example.adam.manoauto.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

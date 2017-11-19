@@ -30,7 +30,7 @@
         <activity android:name=".Search.YearsActivity" />
         <activity android:name=".Search.PriceActivity" />
         <activity
-            android:name=".CreateAnnouncement.AddCarActivity"
+            android:name=".CreateAdvertisement.AddCarActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Search.FuelTypeActivity" />
         <activity android:name=".Search.CarTypeActivity"></activity>

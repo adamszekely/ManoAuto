@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.example.adam.manoauto.Advert.AdvertActivity;
 import com.example.adam.manoauto.Advert.AdvertAdapter;
-import com.example.adam.manoauto.CreateAnnouncement.AddCarActivity;
+import com.example.adam.manoauto.CreateAdvertisement.AddCarActivity;
 import com.example.adam.manoauto.Login.Login;
 import com.example.adam.manoauto.Search.SearchActivity;
 import com.google.firebase.auth.FirebaseAuth;
