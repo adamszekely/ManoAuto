@@ -35,7 +35,7 @@ public class AdvertAdapter extends ArrayAdapter<AdvertActivity> {
         AdvertActivity currentAdvert = getItem(position);
 
         ImageView image = (ImageView) listItemView.findViewById(R.id.image);
-        image.setImageResource(currentAdvert.getImage());
+        image.setImageDrawable(currentAdvert.getImage());
 
         TextView title = (TextView) listItemView.findViewById(R.id.title);
         title.setText(currentAdvert.getTitle());

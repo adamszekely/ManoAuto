@@ -270,12 +270,14 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     public void chooseFuelType(View v)
     {
         Intent intent = new Intent(this, FuelTypeActivity.class);
+        intent.putExtra("FROMACTIVITY", "Search");
         startActivity(intent);
     }
 
     public void chooseCarType(View v)
     {
         Intent intent = new Intent(this, CarTypeActivity.class);
+        intent.putExtra("FROMACTIVITY", "Search");
         startActivity(intent);
     }
 }

@@ -1,12 +1,14 @@
 package com.example.adam.manoauto.Advert;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by Tomas on 05/11/2017.
  */
 
 public class AdvertActivity {
 
-    private int image;
+    private Drawable image;
     private String title;
     private String description;
     private int favImage;
@@ -17,7 +19,7 @@ public class AdvertActivity {
     private String fuelType;
     private String city;
 
-    public AdvertActivity(int image, String title, String description, int favImage, String price, String year, String gearBox, String fuelType, String city) {
+    public AdvertActivity(Drawable image, String title, String description, int favImage, String price, String year, String gearBox, String fuelType, String city) {
         this.image = image;
         this.title = title;
         this.description = description;
@@ -30,7 +32,7 @@ public class AdvertActivity {
     }
 
 
-    public int getImage() {
+    public Drawable getImage() {
         return image;
     }
 

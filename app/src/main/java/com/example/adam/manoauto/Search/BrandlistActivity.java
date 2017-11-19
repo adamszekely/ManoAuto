@@ -102,7 +102,7 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && fromActivity.equals("Search")) {
 
             Intent intent = getIntent();
             intent.putExtra("Key", "true");
