@@ -45,18 +45,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
+            android:textColor="@color/userColor"
             android:textSize="24sp"
-            android:textColor="@color/colorBlue"
+            android:text="TEXT"
             app:layout_constraintTop_toBottomOf="@id/appBar" />
 
         <ImageButton
             android:id="@+id/addXXLimgButton"
             android:layout_width="match_parent"
             android:layout_height="175dp"
+            android:onClick="mainImageClick"
             android:scaleType="fitCenter"
             app:layout_constraintTop_toBottomOf="@id/chosenCarNameText"
-            app:srcCompat="@drawable/add_image"
-            android:onClick="mainImageClick"/>
+            app:srcCompat="@drawable/add_image" />
 
         <HorizontalScrollView
             android:id="@+id/imageScrollView"
@@ -73,79 +74,79 @@
                     android:id="@+id/addSmallImg1"
                     android:layout_width="120dp"
                     android:layout_height="90dp"
+                    android:onClick="firstImageClick"
                     android:scaleType="fitCenter"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/add_image"
-                    android:onClick="firstImageClick"/>
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg2"
                     android:layout_width="120dp"
                     android:layout_height="90dp"
+                    android:onClick="secondImageClick"
                     android:scaleType="fitCenter"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg1"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/add_image"
-                    android:onClick="secondImageClick"/>
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg3"
                     android:layout_width="120dp"
                     android:layout_height="90dp"
+                    android:onClick="thirdImageClick"
                     android:scaleType="fitCenter"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg2"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/add_image"
-                    android:onClick="thirdImageClick"/>
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg4"
                     android:layout_width="120dp"
                     android:layout_height="90dp"
+                    android:onClick="forthImageClick"
                     android:scaleType="fitCenter"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg3"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/add_image"
-                    android:onClick="forthImageClick"/>
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg5"
                     android:layout_width="120dp"
                     android:layout_height="90dp"
+                    android:onClick="fifthImageClick"
                     android:scaleType="fitCenter"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg4"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/add_image"
-                    android:onClick="fifthImageClick"/>
+                    app:srcCompat="@drawable/add_image" />
 
                 <ImageButton
                     android:id="@+id/addSmallImg6"
                     android:layout_width="120dp"
                     android:layout_height="90dp"
+                    android:onClick="sixthImageClick"
                     android:scaleType="fitCenter"
                     app:layout_constraintStart_toEndOf="@id/addSmallImg5"
                     app:layout_constraintTop_toBottomOf="parent"
-                    app:srcCompat="@drawable/add_image"
-                    android:onClick="sixthImageClick"/>
+                    app:srcCompat="@drawable/add_image" />
 
             </LinearLayout>
         </HorizontalScrollView>
 
         <!--New vehicle details -->
-        <Button
-            android:id="@+id/carChooseButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/super_row_information_fields"
-            android:onClick="chooseCarAddClick"
-            android:padding="12dp"
-            android:text="Choose car"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageScrollView" />
+        <!--<Button-->
+        <!--android:id="@+id/carChooseButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:background="@drawable/super_row_information_fields"-->
+        <!--android:onClick="chooseCarAddClick"-->
+        <!--android:padding="12dp"-->
+        <!--android:text="Choose car"-->
+        <!--android:textSize="20sp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/imageScrollView" />-->
 
         <!--Set year for new vehicle-->
 
@@ -161,7 +162,7 @@
             android:textColor="@color/userColor"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carChooseButton" />
+            app:layout_constraintTop_toBottomOf="@id/imageScrollView" />
 
         <TextView
             android:id="@+id/euroTextView"
@@ -170,31 +171,29 @@
             android:layout_marginTop="8dp"
             android:layout_weight="0"
             android:background="@color/superLightGray"
-            android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:text="€"
             android:textColor="@color/colorBlue"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/carChooseButton" />
+            app:layout_constraintTop_toBottomOf="@id/imageScrollView" />
 
-        <EditText
+        <TextView
             android:id="@+id/setTxtNewPrice"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:background="@color/superLightGray"
-            android:hint="1000"
-            android:inputType="number"
-            android:maxLength="7"
-            android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="text"
             android:textColor="@color/colorBlue"
             android:textColorHint="@color/colorGrey"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@id/euroTextView"
-            app:layout_constraintTop_toBottomOf="@id/carChooseButton" />
+            app:layout_constraintTop_toBottomOf="@id/imageScrollView" />
 
         <!--<include-->
         <!--android:id="@+id/details"-->
@@ -229,19 +228,15 @@
             app:layout_constraintTop_toBottomOf="@id/setTxtNewPrice">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtNewYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewYears"
-                android:inputType="number"
-                android:maxLength="4"
-                android:layout_weight="1"
-                android:hint="Year:"
-                android:textColor="@color/colorBlue"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
             <View
@@ -270,13 +265,11 @@
             android:layout_alignParentEnd="true"
             android:background="@color/headerBackgroundColor"
             android:orientation="horizontal"
-            android:inputType="number"
-            android:maxLength="7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/setTxtNewPrice">
 
-            <EditText
+            <TextView
                 android:id="@+id/txtNewKm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -284,9 +277,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewKm"
                 android:layout_weight="1"
-                android:hint="Km:"
-                android:textColor="@color/colorGreen"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
 
@@ -316,19 +308,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newYearLayout">
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtEngineSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewEngineSize"
-                android:inputType="number"
-                android:maxLength="5"
                 android:layout_weight="1"
-                android:hint="Cm3:"
-                android:textColor="@color/colorGreen"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
 
@@ -362,18 +351,17 @@
             app:layout_constraintStart_toEndOf="@id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/newKmLayout">
 
-            <Button
-                android:id="@+id/chooseFuelTypeButton"
+            <TextView
+                android:id="@+id/txtFuelType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewKm2"
                 android:layout_weight="1"
-                android:text="Fuel Type"
-                android:background="@drawable/super_row_information_fields"
-                android:textSize="13sp"
-                android:onClick="chooseFuelTypeAdvert"/>
+                android:text="text"
+                android:textColor="@color/userColor"
+                android:textSize="15sp" />
 
             <!--Button needed here-->
             <!--<EditText-->
@@ -419,19 +407,17 @@
             app:layout_constraintTop_toBottomOf="@+id/newFuelTypeLayout">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtDoorNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewDoorNo"
-                android:inputType="number"
-                android:maxLength="1"
                 android:layout_weight="1"
-                android:hint="Door no"
-                android:textColor="@color/colorGreen"
-                android:textColorHint="@color/colorGrey"
+                android:maxLength="1"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
 
@@ -464,31 +450,17 @@
             app:layout_constraintTop_toBottomOf="@+id/newEngineSizeLayout">
 
 
-            <Button
-                android:id="@+id/chooseCarTypeButton"
+            <EditText
+                android:id="@+id/setTxtCarType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewEngineSize2"
                 android:layout_weight="1"
-                android:text="Car Type"
-                android:background="@drawable/super_row_information_fields"
-                android:textSize="13sp"
-                android:onClick="chooseCarTypeAdvert"/>
-
-            <!--<EditText-->
-            <!--android:id="@+id/setTxtCarType"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginLeft="20dp"-->
-            <!--android:layout_toEndOf="@id/imgNewEngineSize2"-->
-            <!--android:layout_weight="1"-->
-            <!--android:hint="Car type"-->
-            <!--android:textColor="@color/colorGreen"-->
-            <!--android:textColorHint="@color/colorGrey"-->
-            <!--android:textSize="15sp" />-->
+                android:text="text"
+                android:textColor="@color/userColor"
+                android:textSize="15sp" />
 
 
             <View
@@ -522,7 +494,7 @@
             app:layout_constraintTop_toBottomOf="@id/newCarTypeLayout">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtGearType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -530,9 +502,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewGear"
                 android:layout_weight="1"
-                android:hint="Gear type"
-                android:textColor="@color/colorBlue"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
             <View
@@ -565,7 +536,7 @@
             app:layout_constraintTop_toBottomOf="@+id/newDoorNoLayout">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -573,9 +544,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@+id/imgNewColor"
                 android:layout_weight="1"
-                android:hint="Color"
-                android:textColor="@color/colorGreen"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
 
@@ -608,7 +578,7 @@
             app:layout_constraintTop_toBottomOf="@id/newGearTypeLayout">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtCarState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -616,9 +586,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewCarState"
                 android:layout_weight="1"
-                android:hint="Car state"
-                android:textColor="@color/colorBlue"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
             <View
@@ -659,9 +628,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNeWheelPosition"
                 android:layout_weight="1"
-                android:hint="SteeringW"
-                android:textColor="@color/colorGreen"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
 
@@ -702,9 +670,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewWheelDrive"
                 android:layout_weight="1"
-                android:hint="4x4"
-                android:textColor="@color/colorBlue"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
             <View
@@ -735,7 +702,7 @@
             app:layout_constraintTop_toBottomOf="@+id/newSWheelPositionLayout">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtWheelSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -743,9 +710,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewWheelSize"
                 android:layout_weight="1"
-                android:hint="Left"
-                android:textColor="@color/colorGreen"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
 
@@ -778,7 +744,7 @@
             app:layout_constraintTop_toBottomOf="@id/newWheelDriveLayout">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtCarLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -786,9 +752,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewCarLocation"
                 android:layout_weight="1"
-                android:hint="Location"
-                android:textColor="@color/colorBlue"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
             <View
@@ -827,9 +792,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewSeatsNo"
                 android:layout_weight="1"
-                android:hint="Seats NO "
-                android:textColor="@color/colorGreen"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
 
@@ -862,7 +826,7 @@
             app:layout_constraintTop_toBottomOf="@id/newCarLocationLayout">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtESS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -870,9 +834,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewESS"
                 android:layout_weight="1"
-                android:hint="EURO5"
-                android:textColor="@color/colorBlue"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
             <View
@@ -913,9 +876,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewAirConditioning"
                 android:layout_weight="1"
-                android:hint="Air Conditioning"
-                android:textColor="@color/colorGreen"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
 
@@ -949,7 +911,7 @@
             app:layout_constraintTop_toBottomOf="@id/newESSLayout">
 
 
-            <EditText
+            <TextView
                 android:id="@+id/setTxtID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -957,9 +919,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewID"
                 android:layout_weight="1"
-                android:hint="ID"
-                android:textColor="@color/colorBlue"
-                android:textColorHint="@color/colorGrey"
+                android:text="text"
+                android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
             <View
@@ -1002,20 +963,20 @@
             android:background="#BDBDBD"
             app:layout_constraintTop_toBottomOf="@id/newIDLayout" />
 
-        <Button
-            android:id="@+id/saveAdvertButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/button_shape"
-            android:padding="12dp"
-            android:text="Save"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emptyLayout"
-            android:onClick="saveAdvertClick"/>
+        <!--<Button-->
+        <!--android:id="@+id/saveAdvertButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="8dp"-->
+        <!--android:background="@drawable/button_shape"-->
+        <!--android:padding="12dp"-->
+        <!--android:text="Save"-->
+        <!--android:textSize="20sp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/emptyLayout"-->
+        <!--android:onClick="saveAdvertClick"/>-->
 
     </android.support.constraint.ConstraintLayout>
 
