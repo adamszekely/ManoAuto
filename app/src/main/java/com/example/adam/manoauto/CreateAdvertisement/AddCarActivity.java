@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.SyncStateContract;
@@ -293,6 +294,7 @@ public class AddCarActivity extends AppCompatActivity {
     }
 
     public void saveAdvertClick(View v) {
+        Toast.makeText(this, "Please wait", Toast.LENGTH_SHORT).show();
         if (!chosenCar.getText().toString().equals("") && !priceEditText.getText().toString().equals("") &&
                 !kmEditText.getText().toString().equals("") &&
                 !engineSizeEditText.getText().toString().equals("") && !fuelTypeButton.getText().toString().equals("Fuel Type") &&
@@ -303,7 +305,6 @@ public class AddCarActivity extends AppCompatActivity {
                 !seatEditText.getText().toString().equals("") && !wheelEditText.getText().toString().equals("") &&
                 !essEditText.getText().toString().equals("") && !airEditText.getText().toString().equals("") &&
                 !idEditText.getText().toString().equals("") && !yearEditText.getText().toString().equals("")) {
-            Toast.makeText(this, "Please wait", Toast.LENGTH_SHORT).show();
             Bitmap mainImage = ((BitmapDrawable) mainImageButton.getDrawable()).getBitmap();
             Bitmap secondImage = ((BitmapDrawable) secondImageButton.getDrawable()).getBitmap();
             Bitmap thirdImage = ((BitmapDrawable) thirdImageButton.getDrawable()).getBitmap();
@@ -311,13 +312,13 @@ public class AddCarActivity extends AppCompatActivity {
             Bitmap fifthImage = ((BitmapDrawable) fifthImageButton.getDrawable()).getBitmap();
             Bitmap sixthImage = ((BitmapDrawable) sixthImageButton.getDrawable()).getBitmap();
             Bitmap seventhImage = ((BitmapDrawable) seventhImageButton.getDrawable()).getBitmap();
-            encodeBitmapAndSaveToFirebase(mainImage,"imageURL1");
-            encodeBitmapAndSaveToFirebase(secondImage,"imageURL2");
-            encodeBitmapAndSaveToFirebase(thirdImage,"imageURL3");
-            encodeBitmapAndSaveToFirebase(forthImage,"imageURL4");
-            encodeBitmapAndSaveToFirebase(fifthImage,"imageURL5");
-            encodeBitmapAndSaveToFirebase(sixthImage,"imageURL6");
-            encodeBitmapAndSaveToFirebase(seventhImage,"imageURL7");
+            encodeBitmapAndSaveToFirebase(mainImage, "imageURL1");
+            encodeBitmapAndSaveToFirebase(secondImage, "imageURL2");
+            encodeBitmapAndSaveToFirebase(thirdImage, "imageURL3");
+            encodeBitmapAndSaveToFirebase(forthImage, "imageURL4");
+            encodeBitmapAndSaveToFirebase(fifthImage, "imageURL5");
+            encodeBitmapAndSaveToFirebase(sixthImage, "imageURL6");
+            encodeBitmapAndSaveToFirebase(seventhImage, "imageURL7");
             ref.child("carName").setValue(chosenCar.getText().toString());
             ref.child("price").setValue(priceEditText.getText().toString());
             ref.child("km").setValue(kmEditText.getText().toString());
@@ -337,19 +338,31 @@ public class AddCarActivity extends AppCompatActivity {
             ref.child("airCond").setValue(airEditText.getText().toString());
             ref.child("id").setValue(idEditText.getText().toString());
             ref.child("year").setValue(yearEditText.getText().toString());
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+
+           delay();
         } else {
             Toast.makeText(this, "Please fill out all the fields", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void encodeBitmapAndSaveToFirebase(Bitmap bitmap,String name) {
+    public void encodeBitmapAndSaveToFirebase(Bitmap bitmap, String name) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
 
         String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
         ref.child(name).setValue(imageEncoded);
+    }
+
+    public void delay() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do  after 5s = 5000ms
+                Intent intent = new Intent(AddCarActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        }, 5000);
     }
 }
