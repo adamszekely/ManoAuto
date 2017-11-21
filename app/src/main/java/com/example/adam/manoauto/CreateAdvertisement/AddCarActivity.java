@@ -17,6 +17,7 @@ import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,15 +33,19 @@ import com.example.adam.manoauto.Search.FuelTypeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AddCarActivity extends AppCompatActivity {
 
     TextView chosenCar;
-    SharedPreferences shre;
+
     public static final int GET_FROM_GALLERY_FIRST = 1;
     public static final int GET_FROM_GALLERY_SECOND = 2;
     public static final int GET_FROM_GALLERY_THIRD = 3;
@@ -53,13 +58,17 @@ public class AddCarActivity extends AppCompatActivity {
     DatabaseReference ref;
     EditText priceEditText, yearEditText, kmEditText, engineSizeEditText, doorEditText, gearEditText, colorEditText, stateEditText,
             steeringEditText, essEditText, wheelEditText, locationEditText, seatEditText, wheelDriveEditText, airEditText, idEditText;
+    SharedPreferences prefs;
+    SharedPreferences.Editor edit;
+    Bitmap bitmap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
 
-        shre = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
+        edit = prefs.edit();
         chosenCar = (TextView) findViewById(R.id.chosenCarNameText);
         mainImageButton = (ImageButton) findViewById(R.id.addXXLimgButton);
         secondImageButton = (ImageButton) findViewById(R.id.addSmallImg1);
@@ -87,26 +96,24 @@ public class AddCarActivity extends AppCompatActivity {
         airEditText = (EditText) findViewById(R.id.setTxtAirConditioning);
         idEditText = (EditText) findViewById(R.id.setTxtID);
 
-        int numberOfAdverts = shre.getInt("NUMBEROFADVERTS", 0);
-
+        Date timestamp =Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+        String now=formatter.format(timestamp);
         ref = FirebaseDatabase.getInstance()
                 .getReference(SyncStateContract.Constants.CONTENT_DIRECTORY)
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid() + numberOfAdverts);
+                .child(now+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        numberOfAdverts++;
-        SharedPreferences.Editor edit = shre.edit();
-        edit.putInt("NUMBEROFADVERTS", numberOfAdverts);
-        edit.commit();
+
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences prefs = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
+
         chosenCar.setText(prefs.getString("CarAdvert", ""));
         if (prefs.getString("FIRSTIMAGEPATH", "") != "") {
-            Bitmap bitmap = null;
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(prefs.getString("FIRSTIMAGEPATH", "")));
                 int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
@@ -119,7 +126,7 @@ public class AddCarActivity extends AppCompatActivity {
             }
         }
         if (prefs.getString("SECONDIMAGEPATH", "") != "") {
-            Bitmap bitmap = null;
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(prefs.getString("SECONDIMAGEPATH", "")));
                 int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
@@ -132,7 +139,7 @@ public class AddCarActivity extends AppCompatActivity {
             }
         }
         if (prefs.getString("THIRDIMAGEPATH", "") != "") {
-            Bitmap bitmap = null;
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(prefs.getString("THIRDIMAGEPATH", "")));
                 int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
@@ -145,7 +152,7 @@ public class AddCarActivity extends AppCompatActivity {
             }
         }
         if (prefs.getString("FORTHIMAGEPATH", "") != "") {
-            Bitmap bitmap = null;
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(prefs.getString("FORTHIMAGEPATH", "")));
                 int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
@@ -158,7 +165,7 @@ public class AddCarActivity extends AppCompatActivity {
             }
         }
         if (prefs.getString("FIFTHIMAGEPATH", "") != "") {
-            Bitmap bitmap = null;
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(prefs.getString("FIFTHIMAGEPATH", "")));
                 int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
@@ -171,7 +178,7 @@ public class AddCarActivity extends AppCompatActivity {
             }
         }
         if (prefs.getString("SIXTHIMAGEPATH", "") != "") {
-            Bitmap bitmap = null;
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(prefs.getString("SIXTHIMAGEPATH", "")));
                 int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
@@ -184,7 +191,7 @@ public class AddCarActivity extends AppCompatActivity {
             }
         }
         if (prefs.getString("SEVENTHIMAGEPATH", "") != "") {
-            Bitmap bitmap = null;
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(prefs.getString("SEVENTHIMAGEPATH", "")));
                 int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
@@ -241,43 +248,28 @@ public class AddCarActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Uri selectedImage = data.getData();
         //Detects request codes
         if (requestCode == GET_FROM_GALLERY_FIRST && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            SharedPreferences.Editor edit = shre.edit();
-            edit.putString("FIRSTIMAGEPATH", selectedImage.toString());
-            edit.commit();
+            putIntoSharedPreference("FIRSTIMAGEPATH", selectedImage.toString());
+
         } else if (requestCode == GET_FROM_GALLERY_SECOND && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            SharedPreferences.Editor edit = shre.edit();
-            edit.putString("SECONDIMAGEPATH", selectedImage.toString());
-            edit.commit();
+            putIntoSharedPreference("SECONDIMAGEPATH", selectedImage.toString());
+
         } else if (requestCode == GET_FROM_GALLERY_THIRD && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            SharedPreferences.Editor edit = shre.edit();
-            edit.putString("THIRDIMAGEPATH", selectedImage.toString());
-            edit.commit();
+            putIntoSharedPreference("THIRDIMAGEPATH", selectedImage.toString());
+
         } else if (requestCode == GET_FROM_GALLERY_FORTH && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            SharedPreferences.Editor edit = shre.edit();
-            edit.putString("FORTHIMAGEPATH", selectedImage.toString());
-            edit.commit();
+            putIntoSharedPreference("FORTHIMAGEPATH", selectedImage.toString());
 
         } else if (requestCode == GET_FROM_GALLERY_FIFTH && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            SharedPreferences.Editor edit = shre.edit();
-            edit.putString("FIFTHIMAGEPATH", selectedImage.toString());
-            edit.commit();
+            putIntoSharedPreference("FIFTHIMAGEPATH", selectedImage.toString());
+
         } else if (requestCode == GET_FROM_GALLERY_SIXTH && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            SharedPreferences.Editor edit = shre.edit();
-            edit.putString("SIXTHIMAGEPATH", selectedImage.toString());
-            edit.commit();
+            putIntoSharedPreference("SIXTHIMAGEPATH", selectedImage.toString());
+
         } else if (requestCode == GET_FROM_GALLERY_SEVENTH && resultCode == Activity.RESULT_OK) {
-            Uri selectedImage = data.getData();
-            SharedPreferences.Editor edit = shre.edit();
-            edit.putString("SEVENTHIMAGEPATH", selectedImage.toString());
-            edit.commit();
+            putIntoSharedPreference("SEVENTHIMAGEPATH", selectedImage.toString());
         }
     }
 
@@ -294,7 +286,7 @@ public class AddCarActivity extends AppCompatActivity {
     }
 
     public void saveAdvertClick(View v) {
-        Toast.makeText(this, "Please wait", Toast.LENGTH_SHORT).show();
+        delay1();
         if (!chosenCar.getText().toString().equals("") && !priceEditText.getText().toString().equals("") &&
                 !kmEditText.getText().toString().equals("") &&
                 !engineSizeEditText.getText().toString().equals("") && !fuelTypeButton.getText().toString().equals("Fuel Type") &&
@@ -306,18 +298,18 @@ public class AddCarActivity extends AppCompatActivity {
                 !essEditText.getText().toString().equals("") && !airEditText.getText().toString().equals("") &&
                 !idEditText.getText().toString().equals("") && !yearEditText.getText().toString().equals("")) {
             Bitmap mainImage = ((BitmapDrawable) mainImageButton.getDrawable()).getBitmap();
-            Bitmap secondImage = ((BitmapDrawable) secondImageButton.getDrawable()).getBitmap();
-            Bitmap thirdImage = ((BitmapDrawable) thirdImageButton.getDrawable()).getBitmap();
-            Bitmap forthImage = ((BitmapDrawable) forthImageButton.getDrawable()).getBitmap();
-            Bitmap fifthImage = ((BitmapDrawable) fifthImageButton.getDrawable()).getBitmap();
-            Bitmap sixthImage = ((BitmapDrawable) sixthImageButton.getDrawable()).getBitmap();
-            Bitmap seventhImage = ((BitmapDrawable) seventhImageButton.getDrawable()).getBitmap();
             encodeBitmapAndSaveToFirebase(mainImage, "imageURL1");
+            Bitmap secondImage = ((BitmapDrawable) secondImageButton.getDrawable()).getBitmap();
             encodeBitmapAndSaveToFirebase(secondImage, "imageURL2");
+            Bitmap thirdImage = ((BitmapDrawable) thirdImageButton.getDrawable()).getBitmap();
             encodeBitmapAndSaveToFirebase(thirdImage, "imageURL3");
+            Bitmap forthImage = ((BitmapDrawable) forthImageButton.getDrawable()).getBitmap();
             encodeBitmapAndSaveToFirebase(forthImage, "imageURL4");
+            Bitmap fifthImage = ((BitmapDrawable) fifthImageButton.getDrawable()).getBitmap();
             encodeBitmapAndSaveToFirebase(fifthImage, "imageURL5");
+            Bitmap sixthImage = ((BitmapDrawable) sixthImageButton.getDrawable()).getBitmap();
             encodeBitmapAndSaveToFirebase(sixthImage, "imageURL6");
+            Bitmap seventhImage = ((BitmapDrawable) seventhImageButton.getDrawable()).getBitmap();
             encodeBitmapAndSaveToFirebase(seventhImage, "imageURL7");
             ref.child("carName").setValue(chosenCar.getText().toString());
             ref.child("price").setValue(priceEditText.getText().toString());
@@ -338,8 +330,10 @@ public class AddCarActivity extends AppCompatActivity {
             ref.child("airCond").setValue(airEditText.getText().toString());
             ref.child("id").setValue(idEditText.getText().toString());
             ref.child("year").setValue(yearEditText.getText().toString());
+            deleteFromSharedPreference();
+            edit.clear();
 
-           delay();
+            delay();
         } else {
             Toast.makeText(this, "Please fill out all the fields", Toast.LENGTH_LONG).show();
         }
@@ -360,9 +354,39 @@ public class AddCarActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Do  after 5s = 5000ms
+                bitmap.recycle();
                 Intent intent = new Intent(AddCarActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         }, 5000);
+    }
+
+    public void delay1() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do  after 1s = 1000ms
+                Toast.makeText(AddCarActivity.this, "Please wait", Toast.LENGTH_LONG).show();
+            }
+        }, 1000);
+    }
+
+    public void putIntoSharedPreference(String name, String path) {
+        edit.putString(name, path);
+        edit.commit();
+    }
+
+    public void deleteFromSharedPreference() {
+        putIntoSharedPreference("FIRSTIMAGEPATH", "");
+        putIntoSharedPreference("SECONDIMAGEPATH", "");
+        putIntoSharedPreference("THIRDIMAGEPATH", "");
+        putIntoSharedPreference("FORTHIMAGEPATH", "");
+        putIntoSharedPreference("FIFTHIMAGEPATH", "");
+        putIntoSharedPreference("SIXTHIMAGEPATH", "");
+        putIntoSharedPreference("SEVENTHIMAGEPATH", "");
+        putIntoSharedPreference("FUELTYPEADVERT", "Fuel Type");
+        putIntoSharedPreference("CARTYPEADVERT", "Car Type");
+        putIntoSharedPreference("CarAdvert", "");
     }
 }

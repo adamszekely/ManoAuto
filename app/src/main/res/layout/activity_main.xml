@@ -46,13 +46,32 @@
         android:layout_weight="1"
 
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/pageButton"
         app:layout_constraintTop_toBottomOf="@+id/appBar">
 
 
     </android.support.v7.widget.RecyclerView>
 
-    <!-- -->
+    <ProgressBar
+        android:id="@+id/downloadPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/pageButton"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/super_row_information_fields"
+        android:onClick="pageButtonClick"
+        android:text="Next page"
+        app:layout_constraintBottom_toTopOf="@id/button" />
 
     <Button
         android:id="@+id/button"
@@ -63,8 +82,8 @@
         android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:background="@drawable/button_shape"
-        android:text="Search"
         android:onClick="searchClick"
+        android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

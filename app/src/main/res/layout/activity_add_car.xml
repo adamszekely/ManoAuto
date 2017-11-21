@@ -284,6 +284,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewKm"
                 android:layout_weight="1"
+                android:inputType="number"
                 android:hint="Km:"
                 android:textColor="@color/colorGreen"
                 android:textColorHint="@color/colorGrey"
@@ -743,7 +744,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewWheelSize"
                 android:layout_weight="1"
-                android:hint="Left"
+                android:hint="R17"
                 android:textColor="@color/colorGreen"
                 android:textColorHint="@color/colorGrey"
                 android:textSize="15sp" />
@@ -828,6 +829,8 @@
                 android:layout_toEndOf="@id/imgNewSeatsNo"
                 android:layout_weight="1"
                 android:hint="Seats NO "
+                android:inputType="number"
+                android:maxLength="1"
                 android:textColor="@color/colorGreen"
                 android:textColorHint="@color/colorGrey"
                 android:textSize="15sp" />

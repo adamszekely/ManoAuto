@@ -5,8 +5,11 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -33,6 +36,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,10 +72,12 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     NavigationView navigationView;
     private FirebaseAuth mAuth;
     TextView userName;
+    ProgressBar downloadPercentage;
     View header;
     FirebaseUser user;
     static boolean calledAlready = false;
-
+    Query query;
+    String key, firstKey, lastKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         }
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        downloadPercentage = (ProgressBar) findViewById(R.id.downloadPercentage);
+        int colorCodeDark = Color.parseColor("#119f0e");
+        downloadPercentage.getIndeterminateDrawable().setColorFilter(colorCodeDark, PorterDuff.Mode.SRC_IN);
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle("");
@@ -112,88 +121,55 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-      //  final Query query = database.getReference().child("syncstate").limitToFirst(7);
-      //  DatabaseReference ref = query.getRef();
-        DatabaseReference ref = database.getReference().child("syncstate");
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if (extras == null) {
+                key = null;
 
+            } else {
+                key = extras.getString("keyOfLast");
 
-
-       //final DatabaseReference ref = database.getReference().child("syncstate");
-       /* FirebaseRecyclerAdapter<Advert, ItemViewHolder> adapter = new FirebaseRecyclerAdapter<Advert, ItemViewHolder>(
-                Advert.class, R.layout.advert_list_row, ItemViewHolder.class, query){
-
-            protected void populateViewHolder(final ItemViewHolder viewHolder, Advert model, int position) {
-
-                String key = this.getRef(position).getKey();
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        byte[] decodedString = Base64.decode(dataSnapshot.child("imageURL1").toString(), Base64.DEFAULT);
-                        BitmapFactory.Options options = new BitmapFactory.Options();// Create object of bitmapfactory's option method for further option use
-                        options.inPurgeable = true; // inPurgeable is used to free up memory while required
-                        Bitmap carImage1 = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length, options);//Decode image, "thumbnail" is the object of image file
-                        Bitmap carImage = Bitmap.createScaledBitmap(carImage1, 75, 75, true);// convert decoded bitmap into well scalled Bitmap format.
-                        ImageView image = (ImageView) findViewById(R.id.image);
-                        image.setImageBitmap(carImage);
-
-                       String name = dataSnapshot.child("carName").getValue(String.class);
-                        ((TextView)viewHolder.itemView.findViewById(android.R.id.title)).setText(name);
-
-
-                        String descriptionS = dataSnapshot.child("engine").getValue(String.class)+"cm3, "+dataSnapshot.child("carType").getValue(String.class);
-                        TextView description = (TextView) findViewById(R.id.description);
-                        description.setText(descriptionS);
-
-                        ImageButton favButton = (ImageButton) findViewById(R.id.favouriteBtn);
-                        favButton.setImageResource(R.drawable.starfavourites);
-
-                        String priceS = dataSnapshot.child("price").getValue(String.class);
-                        TextView price = (TextView) findViewById(R.id.price);
-                        price.setText(priceS);
-
-                        String yearS = dataSnapshot.child("year").getValue(String.class);
-                        TextView year = (TextView) findViewById(R.id.year);
-                        year.setText(yearS);
-
-                        String gearS = dataSnapshot.child("gear").getValue(String.class);
-                        TextView gearBox = (TextView) findViewById(R.id.gearBox);
-                        gearBox.setText(gearS);
-
-                        String cityS = dataSnapshot.child("location").getValue(String.class);
-                        TextView city = (TextView) findViewById(R.id.city);
-                        city.setText(cityS);
-
-                        String fuel = dataSnapshot.child("fuelType").getValue(String.class);
-                        TextView fuelType = (TextView) findViewById(R.id.city);
-                        city.setText(fuel);
-                    }
-
-                    public void onCancelled(DatabaseError firebaseError) { }
-                });
             }
-        };
+        } else {
+            key = (String) savedInstanceState.getSerializable("keyOfLast");
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listView);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));*/
+        }
 
 
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            //  int count = dataSnapshot.length;
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final Query query2 = database.getReference().child("syncstate").orderByKey().limitToFirst(1);
+
+        query2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                new DownloadFileTask().execute(dataSnapshot);
+                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                    firstKey = dsp.getKey();
+                    if (key == null) {
+                        query = database.getReference().child("syncstate").startAt(firstKey).orderByKey().limitToFirst(6);
+                    } else {
+                        query = database.getReference().child("syncstate").startAt(key).orderByKey().limitToFirst(6);
+                    }
+
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        //  int count = dataSnapshot.length;
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            new DownloadFileTask().execute(dataSnapshot);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            System.out.println("The read failed: " + databaseError.getCode());
+                        }
+                    });
+                }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
+
             }
         });
-
-// Attach a listener to read the data at our posts reference
-
     }
 
     @Override
@@ -279,13 +255,19 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
 
             advertArrayList.clear();
             long times = 0;
-
             DataSnapshot myDataSnap = dataSnapshots[0];
+            long count = myDataSnap.getChildrenCount();
+            long i = 1;
 
             for (DataSnapshot dsp : myDataSnap.getChildren()) {
 
                 Advert advert = dsp.getValue(Advert.class);
                 advertArrayList.add(advert);
+                if (count == i) {
+                    lastKey = dsp.getKey();
+                }
+                i++;
+             //   publishProgress((int) (((i + 1) / (float) count) * 100));
             }
 
 
@@ -305,7 +287,11 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
             AdvertRecycleViewAdapter advertAdapter = new AdvertRecycleViewAdapter(advertArrayList, context);
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listView);
             recyclerView.setAdapter(advertAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+            LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+            /*layoutManager.setReverseLayout(true);
+            layoutManager.setStackFromEnd(true);*/
+            recyclerView.setLayoutManager(layoutManager);
+            downloadPercentage.setVisibility(View.GONE);
             /*ListView listView = (ListView) findViewById(R.id.listView);
             listView.setAdapter(advertAdapter);*/
 
@@ -314,12 +300,13 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     }
 
     private void setProgressPercent(Integer[] values) {
-        // textView.setText("Downloading: "+ values[0]+"%");
-    }
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        public ItemViewHolder(View itemView) {
-            super(itemView);
-        }
+       //  downloadPercentage.setText("Downloading: "+ values[0]+"%");
     }
 
+
+    public void pageButtonClick(View v) {
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        intent.putExtra("keyOfLast", lastKey);
+        startActivity(intent);
+    }
 }
