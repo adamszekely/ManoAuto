@@ -33,6 +33,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -43,6 +44,7 @@ import android.widget.Toast;
 import com.example.adam.manoauto.Advert.Advert;
 import com.example.adam.manoauto.Advert.AdvertActivity;
 import com.example.adam.manoauto.Advert.AdvertAdapter;
+import com.example.adam.manoauto.Advert.AdvertDetailedView;
 import com.example.adam.manoauto.Advert.AdvertHolder;
 import com.example.adam.manoauto.Advert.AdvertRecycleViewAdapter;
 import com.example.adam.manoauto.CreateAdvertisement.AddCarActivity;
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     static boolean calledAlready = false;
     Query query;
     String key, firstKey, lastKey;
+    ListView allCarsListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         downloadPercentage = (ProgressBar) findViewById(R.id.downloadPercentage);
         int colorCodeDark = Color.parseColor("#119f0e");
         downloadPercentage.getIndeterminateDrawable().setColorFilter(colorCodeDark, PorterDuff.Mode.SRC_IN);
-
+        allCarsListView = (ListView) findViewById(R.id.listViewAllCars);
         Toolbar toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle("");
 
@@ -245,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     private class DownloadFileTask extends AsyncTask<DataSnapshot, Integer, Long> {
         Context context = getApplicationContext();
         final ArrayList<Advert> advertArrayList = new ArrayList<Advert>();
+        ArrayList<AdvertActivity> advertActivityArrayList = new ArrayList<AdvertActivity>();
 
         /*  Query query = FirebaseDatabase.getInstance()
                   .getReference()
@@ -258,16 +262,27 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
             DataSnapshot myDataSnap = dataSnapshots[0];
             long count = myDataSnap.getChildrenCount();
             long i = 1;
-
+            int k = 0;
             for (DataSnapshot dsp : myDataSnap.getChildren()) {
 
                 Advert advert = dsp.getValue(Advert.class);
                 advertArrayList.add(advert);
+                byte[] decodedString = Base64.decode(advertArrayList.get(k).getImageURL1(), Base64.DEFAULT);
+                BitmapFactory.Options options = new BitmapFactory.Options();// Create object of bitmapfactory's option method for further option use
+                options.inPurgeable = true; // inPurgeable is used to free up memory while required
+                Bitmap carImage1 = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length, options);//Decode image, "thumbnail" is the object of image file
+                Bitmap carImage = Bitmap.createScaledBitmap(carImage1, 75, 75, true);// convert decoded bitmap into well scalled Bitmap format.
+                Drawable drawable=new BitmapDrawable(getResources(),carImage);
+                advertActivityArrayList.add(new AdvertActivity(drawable,
+                        advertArrayList.get(k).carName, advertArrayList.get(k).engine + "L, " + advertArrayList.get(k).carType,
+                        R.drawable.starfavourites, "€"+advertArrayList.get(k).price, advertArrayList.get(k).year,
+                        advertArrayList.get(k).gear, advertArrayList.get(k).fuel, advertArrayList.get(k).location,dsp.getKey()));
                 if (count == i) {
                     lastKey = dsp.getKey();
                 }
                 i++;
-             //   publishProgress((int) (((i + 1) / (float) count) * 100));
+                k++;
+                //   publishProgress((int) (((i + 1) / (float) count) * 100));
             }
 
 
@@ -284,14 +299,23 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         @Override
         protected void onPostExecute(Long aLong) {
             super.onPostExecute(aLong);
-            AdvertRecycleViewAdapter advertAdapter = new AdvertRecycleViewAdapter(advertArrayList, context);
+            AdvertAdapter advertAdapter = new AdvertAdapter(MainActivity.this, advertActivityArrayList);
+            allCarsListView.setAdapter(advertAdapter);
+            downloadPercentage.setVisibility(View.GONE);
+            allCarsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String key=advertActivityArrayList.get(position).getKey();
+                    Intent intent=new Intent(MainActivity.this, AdvertDetailedView.class);
+                    intent.putExtra("KEY",key);
+                    startActivity(intent);
+                }
+            });
+           /* AdvertRecycleViewAdapter advertAdapter = new AdvertRecycleViewAdapter(advertArrayList, context);
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.listView);
             recyclerView.setAdapter(advertAdapter);
             LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-            /*layoutManager.setReverseLayout(true);
-            layoutManager.setStackFromEnd(true);*/
-            recyclerView.setLayoutManager(layoutManager);
-            downloadPercentage.setVisibility(View.GONE);
+            recyclerView.setLayoutManager(layoutManager);*/
             /*ListView listView = (ListView) findViewById(R.id.listView);
             listView.setAdapter(advertAdapter);*/
 
@@ -300,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     }
 
     private void setProgressPercent(Integer[] values) {
-       //  downloadPercentage.setText("Downloading: "+ values[0]+"%");
+        //  downloadPercentage.setText("Downloading: "+ values[0]+"%");
     }
 
 

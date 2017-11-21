@@ -55,6 +55,9 @@ public class AdvertAdapter extends ArrayAdapter<AdvertActivity> {
         TextView gearBox = (TextView) listItemView.findViewById(R.id.gearBox);
         gearBox.setText(currentAdvert.getGearBox());
 
+        TextView fuel = (TextView) listItemView.findViewById(R.id.fuelType);
+        fuel.setText(currentAdvert.getFuelType());
+
         TextView city = (TextView) listItemView.findViewById(R.id.city);
         city.setText(currentAdvert.getCity());
 

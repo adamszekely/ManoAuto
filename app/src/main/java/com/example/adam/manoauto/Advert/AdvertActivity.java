@@ -18,8 +18,9 @@ public class AdvertActivity {
     private String gearBox;
     private String fuelType;
     private String city;
+    private String key;
 
-    public AdvertActivity(Drawable image, String title, String description, int favImage, String price, String year, String gearBox, String fuelType, String city) {
+    public AdvertActivity(Drawable image, String title, String description, int favImage, String price, String year, String gearBox, String fuelType, String city,String key) {
         this.image = image;
         this.title = title;
         this.description = description;
@@ -29,6 +30,7 @@ public class AdvertActivity {
         this.gearBox = gearBox;
         this.fuelType = fuelType;
         this.city = city;
+        this.key=key;
     }
 
 
@@ -67,4 +69,6 @@ public class AdvertActivity {
     public String getCity() {
         return city;
     }
+
+    public String getKey(){return key;}
 }
