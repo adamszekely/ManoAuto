@@ -4,20 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +28,6 @@ import com.example.adam.manoauto.Search.FuelTypeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -79,22 +73,22 @@ public class AddCarActivity extends AppCompatActivity {
         seventhImageButton = (ImageButton) findViewById(R.id.addSmallImg6);
         fuelTypeButton = (Button) findViewById(R.id.chooseFuelTypeButton);
         carTypeButton = (Button) findViewById(R.id.chooseCarTypeButton);
-        priceEditText = (EditText) findViewById(R.id.setTxtNewPrice);
-        yearEditText = (EditText) findViewById(R.id.setTxtNewYear);
-        kmEditText = (EditText) findViewById(R.id.txtNewKm);
-        engineSizeEditText = (EditText) findViewById(R.id.setTxtEngineSize);
-        doorEditText = (EditText) findViewById(R.id.setTxtDoorNo);
-        gearEditText = (EditText) findViewById(R.id.setTxtGearType);
-        colorEditText = (EditText) findViewById(R.id.setTxtColor);
-        stateEditText = (EditText) findViewById(R.id.setTxtCarState);
-        steeringEditText = (EditText) findViewById(R.id.setTxtWheelPoistion);
-        wheelDriveEditText = (EditText) findViewById(R.id.setTxtESS);
-        wheelEditText = (EditText) findViewById(R.id.setTxtWheelSize);
-        locationEditText = (EditText) findViewById(R.id.setTxtCarLocation);
-        seatEditText = (EditText) findViewById(R.id.setTxtSeatsNo);
-        essEditText = (EditText) findViewById(R.id.setTxtESS);
-        airEditText = (EditText) findViewById(R.id.setTxtAirConditioning);
-        idEditText = (EditText) findViewById(R.id.setTxtID);
+        priceEditText = (EditText) findViewById(R.id.showTxtNewPrice);
+        yearEditText = (EditText) findViewById(R.id.showTxtNewYear);
+        kmEditText = (EditText) findViewById(R.id.showNewKm);
+        engineSizeEditText = (EditText) findViewById(R.id.showTxtEngineSize);
+        doorEditText = (EditText) findViewById(R.id.showTxtDoorNo);
+        gearEditText = (EditText) findViewById(R.id.showTxtGearType);
+        colorEditText = (EditText) findViewById(R.id.showTxtColor);
+        stateEditText = (EditText) findViewById(R.id.showTxtCarState);
+        steeringEditText = (EditText) findViewById(R.id.showTxtWheelPoistion);
+        wheelDriveEditText = (EditText) findViewById(R.id.showTxtESS);
+        wheelEditText = (EditText) findViewById(R.id.showTxtWheelSize);
+        locationEditText = (EditText) findViewById(R.id.showTxtCarLocation);
+        seatEditText = (EditText) findViewById(R.id.showTxtSeatsNo);
+        essEditText = (EditText) findViewById(R.id.showTxtESS);
+        airEditText = (EditText) findViewById(R.id.showTxtAirConditioning);
+        idEditText = (EditText) findViewById(R.id.showTxtID);
 
         Date timestamp =Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
@@ -106,6 +100,8 @@ public class AddCarActivity extends AppCompatActivity {
 
 
     }
+
+
 
     @Override
     protected void onResume() {

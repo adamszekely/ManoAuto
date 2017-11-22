@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/headerBackgroundColor"
@@ -47,7 +46,7 @@
             android:padding="12dp"
             android:textColor="@color/userColor"
             android:textSize="24sp"
-            android:text="TEXT"
+            android:text=""
             app:layout_constraintTop_toBottomOf="@id/appBar" />
 
         <ImageView
@@ -166,14 +165,14 @@
             android:background="@color/superLightGray"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:text="€"
+            android:text="€ "
             android:textColor="@color/colorBlue"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="@id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/imageScrollView" />
 
         <TextView
-            android:id="@+id/setTxtNewPrice"
+            android:id="@+id/showTxtNewPrice"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -181,7 +180,7 @@
             android:background="@color/superLightGray"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:text="text"
+            android:text=""
             android:textColor="@color/colorBlue"
             android:textColorHint="@color/colorGrey"
             android:textSize="30sp"
@@ -218,17 +217,17 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toStartOf="@+id/newKmLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/setTxtNewPrice">
+            app:layout_constraintTop_toBottomOf="@id/showTxtNewPrice">
 
 
             <TextView
-                android:id="@+id/setTxtNewYear"
+                android:id="@+id/showTxtNewYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewYears"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -254,23 +253,23 @@
             android:id="@+id/newKmLayout"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
+
+            android:layout_alignParentStart="true"
             android:background="@color/headerBackgroundColor"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/setTxtNewPrice">
+            app:layout_constraintTop_toBottomOf="@id/showTxtNewPrice">
 
             <TextView
-                android:id="@+id/txtNewKm"
+                android:id="@+id/showNewKm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewKm"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -302,14 +301,14 @@
             app:layout_constraintTop_toBottomOf="@+id/newYearLayout">
 
             <TextView
-                android:id="@+id/setTxtEngineSize"
+                android:id="@+id/showTxtEngineSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewEngineSize"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -345,14 +344,14 @@
             app:layout_constraintTop_toBottomOf="@+id/newKmLayout">
 
             <TextView
-                android:id="@+id/txtFuelType"
+                android:id="@+id/showFuelType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:layout_toEndOf="@id/imgNewKm2"
+                android:layout_toEndOf="@id/imgFuelType"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -372,7 +371,7 @@
 
 
             <ImageView
-                android:id="@+id/imgNewKm2"
+                android:id="@+id/imgFuelType"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignParentStart="true"
@@ -401,7 +400,7 @@
 
 
             <TextView
-                android:id="@+id/setTxtDoorNo"
+                android:id="@+id/showTxtDoorNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -409,7 +408,7 @@
                 android:layout_toEndOf="@id/imgNewDoorNo"
                 android:layout_weight="1"
                 android:maxLength="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -444,14 +443,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtCarType"
+                android:id="@+id/showTxtCarType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewEngineSize2"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -488,14 +487,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtGearType"
+                android:id="@+id/showTxtGearType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewGear"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -530,14 +529,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtColor"
+                android:id="@+id/showTxtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@+id/imgNewColor"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -572,14 +571,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtCarState"
+                android:id="@+id/showTxtCarState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewCarState"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -614,14 +613,14 @@
 
 
             <EditText
-                android:id="@+id/setTxtWheelPoistion"
+                android:id="@+id/showTxtWheelPoistion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNeWheelPosition"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -656,14 +655,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtWheelDrive"
+                android:id="@+id/showTxtWheelDrive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewWheelDrive"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -696,14 +695,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtWheelSize"
+                android:id="@+id/showTxtWheelSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewWheelSize"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -738,14 +737,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtCarLocation"
+                android:id="@+id/showTxtCarLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewCarLocation"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -778,14 +777,14 @@
 
 
             <EditText
-                android:id="@+id/setTxtSeatsNo"
+                android:id="@+id/showTxtSeatsNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewSeatsNo"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -820,14 +819,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtESS"
+                android:id="@+id/showTxtESS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewESS"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -862,14 +861,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtAirConditioning"
+                android:id="@+id/showTxtAirConditioning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewAirConditioning"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
@@ -905,14 +904,14 @@
 
 
             <TextView
-                android:id="@+id/setTxtID"
+                android:id="@+id/showTxtID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/imgNewID"
                 android:layout_weight="1"
-                android:text="text"
+                android:text=""
                 android:textColor="@color/userColor"
                 android:textSize="15sp" />
 
