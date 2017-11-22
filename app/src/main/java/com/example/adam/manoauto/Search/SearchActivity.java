@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         linearLayoutYear = (LinearLayout) findViewById(R.id.yearLayout);
         linearLayoutPrice = (LinearLayout) findViewById(R.id.priceLayout);
         linearLayoutFuel=(LinearLayout) findViewById(R.id.fuelLayout);
-        linearLayoutCarType=(LinearLayout) findViewById(R.id.carTypeLayout);
+        //linearLayoutCarType=(LinearLayout) findViewById(R.id.carTypeLayout);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         requiredValue = "false";
@@ -109,7 +109,9 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         helperListOfCars = new ArrayList<String>(Arrays.asList(TextUtils.split(serialized, ",")));
         for (int i = 0; i < helperListOfCars.size(); i++) {
             String CurrentString = helperListOfCars.get(i);
-            listCar.add(CurrentString);
+            if(!listCar.contains(CurrentString)) {
+                listCar.add(CurrentString);
+            }
         }
 
         if (requiredValue.equals("false") && stopped == false) {
@@ -123,7 +125,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 TextView yearTextView = linearLayoutYear.findViewById(R.id.textViewOfBrand);
                 yearTextView.setText(prefs.getInt("YEARFROM", -1) + " - " + prefs.getInt("YEARTO", -1));
             }
-            if (prefs.getInt("PRICEMIN", -1) != -1 && prefs.getInt("PRICEMAX", -1) != 1) {
+            if (prefs.getInt("PRICEMIN", -1) != -1 && prefs.getInt("PRICEMAX", -1) != -1) {
                 getLayoutInflater().inflate(R.layout.text_button_list_row, linearLayoutPrice);
                 TextView priceTextView = linearLayoutPrice.findViewById(R.id.textViewOfBrand);
                 priceTextView.setText(prefs.getInt("PRICEMIN", -1) + "€ - " + prefs.getInt("PRICEMAX", -1) + "€");
@@ -133,11 +135,11 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 TextView fuelTextView = linearLayoutFuel.findViewById(R.id.textViewOfBrand);
                 fuelTextView.setText(prefs.getString("FUELTYPE", ""));
             }
-            if (prefs.getString("CARTYPE", "") != "") {
+            /*if (prefs.getString("CARTYPE", "") != "") {
                 getLayoutInflater().inflate(R.layout.text_button_list_row, linearLayoutCarType);
                 TextView fuelTextView = linearLayoutCarType.findViewById(R.id.textViewOfBrand);
                 fuelTextView.setText(prefs.getString("CARTYPE", ""));
-            }
+            }*/
         }
     }
 
@@ -228,8 +230,8 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 linearLayoutFuel.removeAllViews();
                 editor.putString("FUELTYPE", "");
 
-                linearLayoutCarType.removeAllViews();
-                editor.putString("CARTYPE", "");
+              /*  linearLayoutCarType.removeAllViews();
+                editor.putString("CARTYPE", "");*/
                 editor.commit();
 
 
@@ -255,25 +257,28 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
             if (temp.equals(listCar.get(i))) {
                 flowLayout.removeView(linearLayout);
                 listCar.remove(i);
-
                 editor.putString("Car", TextUtils.join(",", listCar));
-
             }
         }
         textView = linearLayout.findViewById(R.id.textViewOfBrand);
         linearLayoutYear.removeView(linearLayout);
+
+        if(linearLayoutYear.getChildAt(0)==null){
         editor.putInt("YEARFROM", -1);
-        editor.putInt("YEARTO", -1);
+        editor.putInt("YEARTO", -1);}
 
         linearLayoutPrice.removeView(linearLayout);
-        editor.putInt("PRICEMIN", -1);
-        editor.putInt("PRICEMAX", -1);
+        if(linearLayoutPrice.getChildAt(0)==null) {
+            editor.putInt("PRICEMIN", -1);
+            editor.putInt("PRICEMAX", -1);
+        }
 
         linearLayoutFuel.removeView(linearLayout);
-        editor.putString("FUELTYPE", "");
-
-        linearLayoutCarType.removeView(linearLayout);
-        editor.putString("CARTYPE", "");
+        if(linearLayoutFuel.getChildAt(0)==null) {
+            editor.putString("FUELTYPE", "");
+        }
+       /* linearLayoutCarType.removeView(linearLayout);
+        editor.putString("CARTYPE", "");*/
         editor.commit();
     }
 
@@ -294,7 +299,16 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     }
 
     public void searchCarClick(View v) {
-       Toast.makeText(this,"BlaBla",Toast.LENGTH_LONG).show();
+        if(!listCar.isEmpty() && prefs.getInt("YEARFROM", -1) != -1 && prefs.getInt("YEARTO", -1) != -1 &&
+                prefs.getInt("PRICEMIN", -1) != -1 && prefs.getInt("PRICEMAX", -1) != -1 &&
+                prefs.getString("FUELTYPE", "") != ""){
+            Intent intent = new Intent(this, SearchedCarsActivity.class);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this,"Fill out all the fields",Toast.LENGTH_LONG).show();
+        }
     }
 
     public void chooseFuelType(View v)
@@ -303,11 +317,11 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         intent.putExtra("FROMACTIVITY", "Search");
         startActivity(intent);
     }
-
+/*
     public void chooseCarType(View v)
     {
         Intent intent = new Intent(this, CarTypeActivity.class);
         intent.putExtra("FROMACTIVITY", "Search");
         startActivity(intent);
-    }
+    }*/
 }

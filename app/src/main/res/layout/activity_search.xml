@@ -278,60 +278,60 @@
         </RelativeLayout>
 
         <!--Car type layout-->
-        <RelativeLayout
-            android:id="@+id/carList"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="64dp"
-            android:background="@color/headerBackgroundColor"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/yearList"
-            app:layout_constraintTop_toBottomOf="@id/fuelList"
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/carList"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_marginBottom="64dp"-->
+            <!--android:background="@color/headerBackgroundColor"-->
+            <!--android:orientation="horizontal"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="0.0"-->
+            <!--app:layout_constraintStart_toStartOf="@+id/yearList"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/fuelList"-->
 
-            >
-            <!--tools:layout_editor_absoluteX="0dp"-->
+            <!--&gt;-->
+            <!--&lt;!&ndash;tools:layout_editor_absoluteX="0dp"&ndash;&gt;-->
 
-            <TextView
-                android:id="@+id/car"
-                android:layout_width="70dp"
-                android:layout_height="25dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="Car type:"
+            <!--<TextView-->
+                <!--android:id="@+id/car"-->
+                <!--android:layout_width="70dp"-->
+                <!--android:layout_height="25dp"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Car type:"-->
 
-                android:textColor="@color/userColor"
-                android:textSize="15sp" />
+                <!--android:textColor="@color/userColor"-->
+                <!--android:textSize="15sp" />-->
 
-            <LinearLayout
-                android:id="@+id/carTypeLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/car"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_toEndOf="@+id/car"
-                android:orientation="horizontal"></LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:id="@+id/carTypeLayout"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignTop="@+id/car"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginStart="15dp"-->
+                <!--android:layout_toEndOf="@+id/car"-->
+                <!--android:orientation="horizontal"></LinearLayout>-->
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/car"
-                android:layout_marginEnd="8dp"
-                android:background="#ffffff"
-                android:src="@drawable/arrow_right"
-                android:onClick="chooseCarType"/>
+            <!--<ImageButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_alignTop="@+id/car"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:background="#ffffff"-->
+                <!--android:src="@drawable/arrow_right"-->
+                <!--android:onClick="chooseCarType"/>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#BDBDBD" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="2dp"-->
+                <!--android:background="#BDBDBD" />-->
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
 
         <Button
@@ -390,7 +390,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carList"
+            app:layout_constraintTop_toBottomOf="@id/fuelList"
             app:layout_constraintVertical_bias="0.0" />
 
 
