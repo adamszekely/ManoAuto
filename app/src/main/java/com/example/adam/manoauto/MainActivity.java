@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
     TextView userName;
     ProgressBar downloadPercentage;
     View header;
-    FirebaseUser user;
+    private FirebaseUser user;
     static boolean calledAlready = false;
     Query query;
     String key, firstKey, lastKey;
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         allCarsListView = (ListView) findViewById(R.id.listViewAllCars);
         Toolbar toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle("");
-
         setSupportActionBar(toolbar);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout2);
@@ -193,7 +192,21 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
                 Intent intent = new Intent(this, AddCarActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.service:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+                case R.id.favourites:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+                case R.id.gasstations:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+                case R.id.feedback:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+                case R.id.settings:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
             //"Logout" button
             case R.id.logout:
                 mAuth.signOut();

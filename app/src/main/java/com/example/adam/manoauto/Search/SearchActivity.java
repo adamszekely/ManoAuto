@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.adam.manoauto.CreateAdvertisement.AddCarActivity;
+import com.example.adam.manoauto.Login.Login;
 import com.example.adam.manoauto.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -163,6 +165,34 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.myauto:
+                Intent intent = new Intent(this, AddCarActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.service:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.favourites:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.gasstations:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.feedback:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.settings:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            //"Logout" button
+            case R.id.logout:
+                mAuth.signOut();
+                Intent signout = new Intent(this, Login.class);
+                signout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(signout);
+                break;
+        }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -11,15 +11,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.SyncStateContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.util.Base64;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
+import com.example.adam.manoauto.Login.Login;
 import com.example.adam.manoauto.MainActivity;
 import com.example.adam.manoauto.R;
 import com.example.adam.manoauto.Search.BrandlistActivity;
@@ -36,9 +45,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddCarActivity extends AppCompatActivity {
+public class AddCarActivity extends AppCompatActivity implements   NavigationView.OnNavigationItemSelectedListener {
 
     TextView chosenCar;
+
 
     public static final int GET_FROM_GALLERY_FIRST = 1;
     public static final int GET_FROM_GALLERY_SECOND = 2;
@@ -55,11 +65,15 @@ public class AddCarActivity extends AppCompatActivity {
     SharedPreferences prefs;
     SharedPreferences.Editor edit;
     Bitmap bitmap = null;
+    private FirebaseAuth mAuth;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_car);
+        setContentView(R.layout.main_content_activity_add_car);
 
         prefs = getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
         edit = prefs.edit();
@@ -89,6 +103,35 @@ public class AddCarActivity extends AppCompatActivity {
         essEditText = (EditText) findViewById(R.id.showTxtESS);
         airEditText = (EditText) findViewById(R.id.showTxtAirConditioning);
         idEditText = (EditText) findViewById(R.id.showTxtID);
+        mAuth = FirebaseAuth.getInstance();
+        drawerLayout = (DrawerLayout) findViewById(R.id.MainContentActivityAddCar);
+
+        Toolbar toolbar = findViewById(R.id.toolBarAddCar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+
+
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView = (NavigationView) findViewById(R.id.navView);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
+        //Enable the drawer to open and close
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
 
         Date timestamp =Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
@@ -384,5 +427,39 @@ public class AddCarActivity extends AppCompatActivity {
         putIntoSharedPreference("FUELTYPEADVERT", "Fuel Type");
         putIntoSharedPreference("CARTYPEADVERT", "Car Type");
         putIntoSharedPreference("CarAdvert", "");
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.myauto:
+                Intent intent = new Intent(this, AddCarActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.service:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.favourites:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.gasstations:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.feedback:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.settings:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            //"Logout" button
+            case R.id.logout:
+                mAuth.signOut();
+                Intent signout = new Intent(this, Login.class);
+                signout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(signout);
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
