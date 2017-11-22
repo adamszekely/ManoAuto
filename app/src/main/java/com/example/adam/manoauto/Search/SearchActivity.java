@@ -228,7 +228,6 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 flowLayout.removeView(linearLayout);
                 listCar.remove(i);
                 editor.putString("Car", TextUtils.join(",", listCar));
-                Toast.makeText(this,listCar.size()+"",Toast.LENGTH_LONG).show();
             }
         }
         textView = linearLayout.findViewById(R.id.textViewOfBrand);
