@@ -250,10 +250,6 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         final ArrayList<Advert> advertArrayList = new ArrayList<Advert>();
         ArrayList<AdvertActivity> advertActivityArrayList = new ArrayList<AdvertActivity>();
 
-        /*  Query query = FirebaseDatabase.getInstance()
-                  .getReference()
-                  .child("syncstate")
-                  .limitToLast(5);*/
         @Override
         protected Long doInBackground(DataSnapshot... dataSnapshots) {
 
@@ -268,11 +264,8 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
                 Advert advert = dsp.getValue(Advert.class);
                 advertArrayList.add(advert);
                 byte[] decodedString = Base64.decode(advertArrayList.get(k).getImageURL1(), Base64.DEFAULT);
-                BitmapFactory.Options options = new BitmapFactory.Options();// Create object of bitmapfactory's option method for further option use
-                options.inPurgeable = true; // inPurgeable is used to free up memory while required
-                Bitmap carImage1 = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length, options);//Decode image, "thumbnail" is the object of image file
-                Bitmap carImage = Bitmap.createScaledBitmap(carImage1, 75, 75, true);// convert decoded bitmap into well scalled Bitmap format.
-                Drawable drawable=new BitmapDrawable(getResources(),carImage);
+                Bitmap carImage1 = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);//Decode image, "thumbnail" is the object of image file
+                Drawable drawable=new BitmapDrawable(getResources(),carImage1);
                 advertActivityArrayList.add(new AdvertActivity(drawable,
                         advertArrayList.get(k).carName, advertArrayList.get(k).engine + "L, " + advertArrayList.get(k).carType,
                         R.drawable.starfavourites, "€"+advertArrayList.get(k).price, advertArrayList.get(k).year,

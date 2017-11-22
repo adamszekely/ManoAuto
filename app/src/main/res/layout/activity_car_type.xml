@@ -56,7 +56,7 @@
             android:id="@+id/radioButtonCoupe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cuope"
+            android:text="Coupe"
             android:textColor="@color/userColor"
             android:buttonTint="@color/userColor"
             android:textSize="25sp"
