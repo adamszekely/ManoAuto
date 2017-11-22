@@ -179,7 +179,7 @@
             app:layout_constraintTop_toBottomOf="@id/carChooseButton" />
 
         <EditText
-            android:id="@+id/setTxtNewPrice"
+            android:id="@+id/showTxtNewPrice"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -226,11 +226,11 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toStartOf="@+id/newKmLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/setTxtNewPrice">
+            app:layout_constraintTop_toBottomOf="@id/showTxtNewPrice">
 
 
             <EditText
-                android:id="@+id/setTxtNewYear"
+                android:id="@+id/showTxtNewYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -274,10 +274,10 @@
             android:maxLength="7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/setTxtNewPrice">
+            app:layout_constraintTop_toBottomOf="@id/showTxtNewPrice">
 
             <EditText
-                android:id="@+id/txtNewKm"
+                android:id="@+id/showNewKm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -318,7 +318,7 @@
             app:layout_constraintTop_toBottomOf="@+id/newYearLayout">
 
             <EditText
-                android:id="@+id/setTxtEngineSize"
+                android:id="@+id/showTxtEngineSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -421,7 +421,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtDoorNo"
+                android:id="@+id/showTxtDoorNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -524,7 +524,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtGearType"
+                android:id="@+id/showTxtGearType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -567,7 +567,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtColor"
+                android:id="@+id/showTxtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -610,7 +610,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtCarState"
+                android:id="@+id/showTxtCarState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -653,7 +653,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtWheelPoistion"
+                android:id="@+id/showTxtWheelPoistion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -696,7 +696,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtWheelDrive"
+                android:id="@+id/showTxtWheelDrive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -737,7 +737,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtWheelSize"
+                android:id="@+id/showTxtWheelSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -780,7 +780,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtCarLocation"
+                android:id="@+id/showTxtCarLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -821,7 +821,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtSeatsNo"
+                android:id="@+id/showTxtSeatsNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -866,7 +866,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtESS"
+                android:id="@+id/showTxtESS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -909,7 +909,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtAirConditioning"
+                android:id="@+id/showTxtAirConditioning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -953,7 +953,7 @@
 
 
             <EditText
-                android:id="@+id/setTxtID"
+                android:id="@+id/showTxtID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
