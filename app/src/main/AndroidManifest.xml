@@ -35,7 +35,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Search.FuelTypeActivity" />
         <activity android:name=".Search.CarTypeActivity" />
-        <activity android:name=".Advert.AdvertDetailedView"></activity>
+        <activity android:name=".Advert.AdvertDetailedView" />
+        <activity android:name=".Search.SearchedCarsActivity"></activity>
     </application>
 
 </manifest>
