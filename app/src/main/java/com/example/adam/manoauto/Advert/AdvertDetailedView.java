@@ -71,7 +71,6 @@ public class AdvertDetailedView extends AppCompatActivity {
             key = (String) savedInstanceState.getSerializable("KEY");
 
         }
-        //Toast.makeText(this,key,Toast.LENGTH_LONG).show();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("syncstate").child(key);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -120,10 +119,7 @@ public class AdvertDetailedView extends AppCompatActivity {
 
     public Drawable retrieveImages(String image){
         byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
-        // BitmapFactory.Options options = new BitmapFactory.Options();// Create object of bitmapfactory's option method for further option use
-        // options.inPurgeable = true; // inPurgeable is used to free up memory while required
         Bitmap carImage1 = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);//Decode image, "thumbnail" is the object of image file
-        // Bitmap carImage = Bitmap.createScaledBitmap(carImage1, 75, 75, true);// convert decoded bitmap into well scalled Bitmap format.
         Drawable drawable = new BitmapDrawable(getResources(), carImage1);
         return drawable;
     }

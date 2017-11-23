@@ -35,6 +35,7 @@ import com.example.adam.manoauto.Search.BrandlistActivity;
 import com.example.adam.manoauto.Search.CarTypeActivity;
 import com.example.adam.manoauto.Search.FuelTypeActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -69,6 +70,8 @@ public class AddCarActivity extends AppCompatActivity implements   NavigationVie
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
+    TextView userName;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +108,7 @@ public class AddCarActivity extends AppCompatActivity implements   NavigationVie
         idEditText = (EditText) findViewById(R.id.showTxtID);
         mAuth = FirebaseAuth.getInstance();
         drawerLayout = (DrawerLayout) findViewById(R.id.MainContentActivityAddCar);
-
+        user = mAuth.getCurrentUser();
         Toolbar toolbar = findViewById(R.id.toolBarAddCar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -125,7 +128,7 @@ public class AddCarActivity extends AppCompatActivity implements   NavigationVie
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.navView);
+        navigationView = (NavigationView) findViewById(R.id.navViewAddCar);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
         //Enable the drawer to open and close
@@ -149,6 +152,11 @@ public class AddCarActivity extends AppCompatActivity implements   NavigationVie
     @Override
     protected void onResume() {
         super.onResume();
+
+        View header = navigationView.getHeaderView(0);
+        userName = (TextView) header.findViewById(R.id.usernameText);
+        //gets the current user and displays him inside the app as the current logged in user
+        userName.setText(user.getEmail());
 
         chosenCar.setText(prefs.getString("CarAdvert", ""));
         if (prefs.getString("FIRSTIMAGEPATH", "") != "") {
@@ -432,6 +440,10 @@ public class AddCarActivity extends AppCompatActivity implements   NavigationVie
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.allcars:
+                Intent intent1 = new Intent(this, MainActivity.class);
+                startActivity(intent1);
+                break;
             case R.id.myauto:
                 Intent intent = new Intent(this, AddCarActivity.class);
                 startActivity(intent);
@@ -462,4 +474,5 @@ public class AddCarActivity extends AppCompatActivity implements   NavigationVie
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

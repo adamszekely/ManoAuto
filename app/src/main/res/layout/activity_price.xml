@@ -7,11 +7,39 @@
     android:background="@color/superLightGray"
     tools:context="com.example.adam.manoauto.Search.PriceActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolBarPrice"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="@color/toolbarBackground"
+            app:popupTheme="@style/ThemeOverlay.AppCompat">
+
+            <TextView
+                android:id="@+id/price_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/locationBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:text="Choose price"
+                android:textColor="@color/headerBackgroundColor"
+                android:textSize="18dp" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
     <EditText
         android:id="@+id/priceMin"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:hint="Min price"
         android:maxLength="7"
@@ -19,13 +47,13 @@
         android:textColor="@color/userColor"
         android:textColorHint="@color/colorGrey"
         app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/appBarPrice" />
 
     <EditText
         android:id="@+id/priceMax"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:maxLength="7"
         android:hint="Max price"
@@ -40,6 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="priceClick"
+        android:layout_marginLeft="50dp"
         android:text="OK"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/priceMax" />

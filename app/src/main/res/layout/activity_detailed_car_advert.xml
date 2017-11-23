@@ -33,7 +33,7 @@
                     android:layout_alignTop="@+id/locationBtn"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
-                    android:text="Add car"
+                    android:text="Detailed advert"
                     android:textColor="@color/headerBackgroundColor"
                     android:textSize="18dp" />
             </android.support.v7.widget.Toolbar>

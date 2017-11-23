@@ -38,17 +38,13 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
 
     ListView modelListView;
     String name, fromActivity;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
-    NavigationView navigationView;
     SharedPreferences sharedPreferences;
     List<String> helperListOfCars, listCar;
-    boolean added = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_content_activity_model_list);
+        setContentView(R.layout.activity_modellist);
         listCar = new ArrayList<String>();
         modelListView = (ListView) findViewById(R.id.modelListView);
 
@@ -66,33 +62,9 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
             fromActivity = (String) savedInstanceState.getSerializable("FROMACTIVITY");
         }
 
-        Toolbar toolbar = findViewById(R.id.toolBarBrand);
+        Toolbar toolbar = findViewById(R.id.toolBarModel);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.MainContentModelList);
-
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-            }
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-        };
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.navView);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setItemIconTintList(null);
-        //Enable the drawer to open and close
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        // Toast.makeText(this,name,Toast.LENGTH_LONG).show();
 
         helperListOfCars = new ArrayList<String>();
 
@@ -119,6 +91,7 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
                         editor.putString("Car", TextUtils.join(",", listCar));
                         editor.commit();
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(ModellistActivity.this, "This model is already selected", Toast.LENGTH_LONG).show();
                         listCar.removeAll(listCar);
@@ -131,6 +104,7 @@ public class ModellistActivity extends AppCompatActivity implements NavigationVi
                     editor.putString("CarAdvert", name + " " + message);
                     editor.commit();
                     startActivity(intent);
+                    finish();
                 }
             }
         });

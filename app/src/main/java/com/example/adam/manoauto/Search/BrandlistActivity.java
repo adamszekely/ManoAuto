@@ -31,21 +31,17 @@ import java.util.ArrayList;
 public class BrandlistActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView brandListView;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
-    NavigationView navigationView;
     String fromActivity;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_content_activity_brand_list);
+        setContentView(R.layout.activity_brand_list);
         brandListView=(ListView) findViewById(R.id.brandListView);
         Toolbar toolbar = findViewById(R.id.toolBarBrand);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        drawerLayout = (DrawerLayout) findViewById(R.id.MainContentBrandList);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -58,27 +54,6 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
             fromActivity = (String) savedInstanceState.getSerializable("FROMACTIVITY");
         }
 
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-            }
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-        };
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.navView);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setItemIconTintList(null);
-        //Enable the drawer to open and close
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
         brandListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -89,6 +64,7 @@ public class BrandlistActivity extends AppCompatActivity implements NavigationVi
                 intent.putExtra("BRAND", message);
                 intent.putExtra("FROMACTIVITY", fromActivity);
                 startActivity(intent);
+                finish();
             }
         });
     }

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.adam.manoauto.CreateAdvertisement.AddCarActivity;
 import com.example.adam.manoauto.Login.Login;
+import com.example.adam.manoauto.MainActivity;
 import com.example.adam.manoauto.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -82,7 +83,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.navView);
+        navigationView = (NavigationView) findViewById(R.id.navViewSearch);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
         //Enable the drawer to open and close
@@ -168,9 +169,15 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.allcars:
+                Intent intent1 = new Intent(this, MainActivity.class);
+                startActivity(intent1);
+                finish();
+                break;
             case R.id.myauto:
                 Intent intent = new Intent(this, AddCarActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.service:
                 Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
@@ -193,6 +200,7 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
                 Intent signout = new Intent(this, Login.class);
                 signout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(signout);
+                finish();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -316,6 +324,11 @@ public class SearchActivity extends AppCompatActivity implements ShareActionProv
         Intent intent = new Intent(this, FuelTypeActivity.class);
         intent.putExtra("FROMACTIVITY", "Search");
         startActivity(intent);
+    }
+
+    public void detailedButtonSearch(View v)
+    {
+        Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
     }
 /*
     public void chooseCarType(View v)

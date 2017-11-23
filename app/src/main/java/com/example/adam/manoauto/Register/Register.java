@@ -35,23 +35,18 @@ public class Register extends AppCompatActivity {
 
     }
 
-    /*@Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-    }*/
-
     public void registerClick(View v) {
         sEmail = email.getText().toString().trim();
         sPassword = password.getText().toString().trim();
         sRepeatPass = repeatPass.getText().toString().trim();
         if (!sEmail.isEmpty() && !sPassword.isEmpty() && !sRepeatPass.isEmpty()) {
             if (sPassword.equals(sRepeatPass)) {
+                Toast.makeText(this,"Please wait",Toast.LENGTH_SHORT).show();
                 createUser(email.getText().toString(), password.getText().toString());
                 if (signInResult == true) {
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             } else {
                 Toast.makeText(this, "Passwords need to be the same", Toast.LENGTH_LONG).show();

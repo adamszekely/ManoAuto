@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,6 +24,10 @@ public class FuelTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_type);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
+        Toolbar toolbar = findViewById(R.id.toolBarFuel);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();

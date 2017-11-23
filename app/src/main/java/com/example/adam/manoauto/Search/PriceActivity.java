@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +23,10 @@ public class PriceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_price);
         priceMax=(EditText) findViewById(R.id.priceMax);
         priceMin=(EditText) findViewById(R.id.priceMin);
+
+        Toolbar toolbar = findViewById(R.id.toolBarPrice);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
     }
 
     public void priceClick(View v) {

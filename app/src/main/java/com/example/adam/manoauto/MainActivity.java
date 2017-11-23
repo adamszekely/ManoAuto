@@ -127,10 +127,8 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
                 key = null;
-
             } else {
                 key = extras.getString("keyOfLast");
-
             }
         } else {
             key = (String) savedInstanceState.getSerializable("keyOfLast");
@@ -181,7 +179,6 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
         userName = (TextView) header.findViewById(R.id.usernameText);
         //gets the current user and displays him inside the app as the current logged in user
         userName.setText(user.getEmail());
-
     }
 
     //gives functionality to the items in the navigation drawer
@@ -222,25 +219,6 @@ public class MainActivity extends AppCompatActivity implements ShareActionProvid
     @Override
     public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
         return false;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu, menu);
-        return true;
-    }
-
-    //gives functionality to the navigation bar buttons
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            //"Edit Search" button
-            case R.id.search_navigation:
-                Intent intent = new Intent(this, SearchActivity.class);
-                startActivity(intent);
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     public void searchClick(View v) {

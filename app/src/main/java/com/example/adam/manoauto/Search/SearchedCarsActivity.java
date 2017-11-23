@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.adam.manoauto.Advert.Advert;
 import com.example.adam.manoauto.Advert.AdvertActivity;
@@ -71,7 +72,7 @@ public class SearchedCarsActivity extends AppCompatActivity implements ShareActi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_searched_cars);
+        setContentView(R.layout.main_content_activity_searched_cars);
        /* if (!calledAlready) {
             FirebaseDatabase.getInstance().setPersistenceEnabled(false);
             calledAlready = true;
@@ -86,33 +87,32 @@ public class SearchedCarsActivity extends AppCompatActivity implements ShareActi
         int colorCodeDark = Color.parseColor("#119f0e");
         downloadPercentage.getIndeterminateDrawable().setColorFilter(colorCodeDark, PorterDuff.Mode.SRC_IN);
         allCarsListView = (ListView) findViewById(R.id.listViewAllCarsSearched);
-        //Toolbar toolbar = findViewById(R.id.toolBar);
-        // toolbar.setTitle("");
+        Toolbar toolbar = findViewById(R.id.toolBarSearched);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
 
-        // setSupportActionBar(toolbar);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayoutSearchedCars);
 
-//        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout2);
-//
-//        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
-//            /** Called when a drawer has settled in a completely closed state. */
-//            public void onDrawerClosed(View view) {
-//                super.onDrawerClosed(view);
-//            }
-//
-//            /** Called when a drawer has settled in a completely open state. */
-//            public void onDrawerOpened(View drawerView) {
-//                super.onDrawerOpened(drawerView);
-//            }
-//        };
-//        drawerLayout.addDrawerListener(toggle);
-//        toggle.syncState();
-//
-//        navigationView = (NavigationView) findViewById(R.id.navView);
-//        navigationView.setNavigationItemSelectedListener(this);
-//        navigationView.setItemIconTintList(null);
-//        //Enable the drawer to open and close
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//        getSupportActionBar().setHomeButtonEnabled(true);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close) {
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView = (NavigationView) findViewById(R.id.navViewSearchedCars);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
+        //Enable the drawer to open and close
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -148,10 +148,10 @@ public class SearchedCarsActivity extends AppCompatActivity implements ShareActi
     @Override
     protected void onResume() {
         super.onResume();
-//        header = navigationView.getHeaderView(0);
-//        userName = (TextView) header.findViewById(R.id.usernameText);
-//        //gets the current user and displays him inside the app as the current logged in user
-//        userName.setText(user.getEmail());
+        header = navigationView.getHeaderView(0);
+       TextView userName = (TextView) header.findViewById(R.id.usernameText);
+        //gets the current user and displays him inside the app as the current logged in user
+        userName.setText(user.getEmail());
 
     }
 
@@ -159,11 +159,29 @@ public class SearchedCarsActivity extends AppCompatActivity implements ShareActi
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.allcars:
+                Intent intent1 = new Intent(this, MainActivity.class);
+                startActivity(intent1);
+                break;
             case R.id.myauto:
                 Intent intent = new Intent(this, AddCarActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.service:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.favourites:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.gasstations:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.feedback:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.settings:
+                Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+                break;
             //"Logout" button
             case R.id.logout:
                 mAuth.signOut();

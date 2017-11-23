@@ -7,11 +7,40 @@
     android:background="@color/superLightGray"
     tools:context="com.example.adam.manoauto.Search.YearsActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarYears"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolBarYears"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="@color/toolbarBackground"
+            app:popupTheme="@style/ThemeOverlay.AppCompat">
+
+            <TextView
+                android:id="@+id/years_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/locationBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:text="Choose years"
+                android:textColor="@color/headerBackgroundColor"
+                android:textSize="18dp" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+
     <EditText
         android:id="@+id/yearFrom"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:hint="From"
         android:maxLength="4"
@@ -19,13 +48,13 @@
         android:textColor="@color/userColor"
         android:textColorHint="@color/colorGrey"
         app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarYears" />
 
     <EditText
         android:id="@+id/yearTo"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:maxLength="4"
         android:hint="To"
@@ -40,6 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="yearsClick"
+        android:layout_marginLeft="50dp"
         android:text="OK"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/yearTo" />

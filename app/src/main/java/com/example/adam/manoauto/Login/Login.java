@@ -44,6 +44,7 @@ public class Login extends AppCompatActivity {
                 else{
                     Intent intent=new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -60,6 +61,7 @@ public class Login extends AppCompatActivity {
         sEmail = email.getText().toString().trim();
         sPassword = password.getText().toString().trim();
         if (!sEmail.isEmpty() && !sPassword.isEmpty()) {
+            Toast.makeText(this,"Please wait",Toast.LENGTH_SHORT).show();
             login(sEmail, sPassword);
         }
         else {
@@ -75,6 +77,7 @@ public class Login extends AppCompatActivity {
     {
         Intent intent=new Intent(this, Register.class);
         startActivity(intent);
+        finish();
     }
 
 public void login(String email, String password)
@@ -87,7 +90,6 @@ public void login(String email, String password)
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("TAG", "signInWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
-
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("TAG", "signInWithEmail:failure", task.getException());

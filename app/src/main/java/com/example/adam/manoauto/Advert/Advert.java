@@ -2,11 +2,11 @@ package com.example.adam.manoauto.Advert;
 
 /**
  * Created by Adam on 19/11/2017.
+ * Class for storing adverts retrieved from firebase.
  */
 
 public class Advert {
     public String airCond;
-
     public String carName;
     public String carType;
     public String color;

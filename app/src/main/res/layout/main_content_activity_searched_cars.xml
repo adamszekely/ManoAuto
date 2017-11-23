@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayoutSearchedCars"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/MainContentModelList">
+    android:layout_height="match_parent">
 
-    <include layout="@layout/activity_modellist">
+    <include layout="@layout/activity_searched_cars">
 
     </include>
 
     <android.support.design.widget.NavigationView
 
-        android:id="@+id/navView"
+        android:id="@+id/navViewSearchedCars"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
@@ -24,4 +23,5 @@
         app:menu="@menu/nav_menu">
 
     </android.support.design.widget.NavigationView>
+
 </android.support.v4.widget.DrawerLayout>
