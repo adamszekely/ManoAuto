@@ -103,4 +103,9 @@ public void login(String email, String password)
             });
 }
 
+public void facebookClick(View v)
+{
+    Toast.makeText(this,"Not implemented yet",Toast.LENGTH_SHORT).show();
+}
+
 }
